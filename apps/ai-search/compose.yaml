@@ -1,0 +1,29 @@
+stremio-ai-search:
+    image: ghcr.io/cedya77/stremio-ai-search:latest
+    container_name: stremio-ai-search
+    env_file:
+      - .env
+    expose:
+      - 7002
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ai-search.rule=Host(`${AI_SEARCH_HOSTNAME}`)"
+      - "traefik.http.routers.ai-search.entrypoints=websecure"
+      - "traefik.http.routers.ai-search.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ai-search.middlewares=authelia@docker"
+      - "traefik.http.services.ai-search.loadbalancer.server.port=7002"
+    environment:
+      - HOST=${AI_SEARCH_HOSTNAME}
+      - PORT=7002
+      - ENABLE_LOGGING=true
+      - TRAKT_CLIENT_ID=${AI_SEARCH_TRAKT_CLIENT_ID?}
+      - TRAKT_CLIENT_SECRET=${AI_SEARCH_TRAKT_CLIENT_SECRET?}
+      - ENCRYPTION_KEY=${AI_SEARCH_ENCRYPTION_KEY?}
+      - RPDB_API_KEY=${AI_SEARCH_RPDB?}
+      - RECAPTCHA_SECRET_KEY=${AI_SEARCH_RECAPTCHA_SECRET_KEY?}
+      - ADMIN_TOKEN=${AI_SEARCH_ADMIN_TOKEN?}
+    restart: unless-stopped
+    profiles:
+      - ai-search
+      - stremio
+      - all
