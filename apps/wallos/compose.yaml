@@ -1,0 +1,20 @@
+services:
+  wallos:
+    image: bellamy/wallos:latest
+    container_name: wallos
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wallos.rule=Host(`${WALLOS_HOSTNAME?}`)"
+      - "traefik.http.routers.wallos.entrypoints=websecure"
+      - "traefik.http.routers.wallos.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.wallos.middlewares=authelia@docker"
+      - "traefik.http.services.wallos.loadbalancer.server.port=80"
+    volumes:
+      - ${DOCKER_DATA_DIR}/wallos/db:/var/www/html/db
+      - ${DOCKER_DATA_DIR}/wallos/logos:/var/www/html/images/uploads/logos
+    profiles:
+      - wallos
+      - all

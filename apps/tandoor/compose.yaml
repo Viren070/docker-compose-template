@@ -1,0 +1,74 @@
+services:
+  tandoor_db:
+    container_name: tandoor_db
+    image: postgres:16-alpine
+    restart: always
+    volumes:
+      - ${DOCKER_DATA_DIR}/tandoor/postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    profiles:
+      - tandoor
+      - all
+
+  web_recipes:
+    image: ghcr.io/tandoorrecipes/recipes:develop
+    container_name: tandoor
+    restart: always
+    depends_on:
+      - tandoor_db
+    environment:
+      SECRET_KEY: ${TANDOOR_SECRET_KEY}
+      DB_ENGINE: ${DB_ENGINE}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      ALLOWED_HOSTS: ${TANDOOR_HOSTNAME}
+      TZ: ${TZ}
+      GUNICORN_MEDIA: ${GUNICORN_MEDIA}
+      DEBUG: ${DEBUG}
+      SQL_DEBUG: ${SQL_DEBUG}
+      FRACTION_PREF_DEFAULT: ${FRACTION_PREF_DEFAULT}
+      COMMENT_PREF_DEFAULT: ${COMMENT_PREF_DEFAULT}
+      SHOPPING_MIN_AUTOSYNC_INTERVAL: ${SHOPPING_MIN_AUTOSYNC_INTERVAL}
+    volumes:
+      - ${DOCKER_DATA_DIR}/tandoor/staticfiles:/opt/recipes/staticfiles
+      - ${DOCKER_DATA_DIR}/tandoor/mediafiles:/opt/recipes/mediafiles
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tandoor-app.rule=Host(`${TANDOOR_HOSTNAME}`) && !PathPrefix(`/static`) && !PathPrefix(`/media`)"
+      - "traefik.http.routers.tandoor-app.entrypoints=websecure"
+      - "traefik.http.routers.tandoor-app.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.tandoor-app.middlewares=authelia@docker"
+      - "traefik.http.services.tandoor-app.loadbalancer.server.port=8080"
+    profiles:
+      - tandoor
+      - all
+
+  tandoor-files:
+    image: nginx:alpine
+    container_name: tandoor-files
+    restart: always
+    volumes:
+      - ${DOCKER_DATA_DIR}/tandoor/staticfiles:/var/www/static:ro
+      - ${DOCKER_DATA_DIR}/tandoor/mediafiles:/var/www/media:ro
+      - ./tandoor-files-nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tandoor-files.rule=Host(`${TANDOOR_HOSTNAME}`) && (PathPrefix(`/static`) || PathPrefix(`/media`))"
+      - "traefik.http.routers.tandoor-files.entrypoints=websecure"
+      - "traefik.http.routers.tandoor-files.tls.certresolver=letsencrypt"
+      - "traefik.http.services.tandoor-files.loadbalancer.server.port=80"
+    profiles:
+      - tandoor
+      - all
