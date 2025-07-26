@@ -24,6 +24,8 @@ include:
   - apps/dozzle/compose.yaml
   - apps/easynews-plus/compose.yaml
   - apps/easynews-plus-plus/compose.yaml
+  - apps/fivefilters-full-text-rss/compose.yaml
+  - apps/freshrss/compose.yaml
   - apps/gluetun/compose.yaml
   - apps/honey/compose.yaml
   - apps/huntarr/compose.yaml
@@ -57,6 +59,7 @@ include:
   - apps/redlib/compose.yaml
   - apps/realdebrid-account-monitor/compose.yaml
   - apps/recyclarr/compose.yaml
+  - apps/rss-bridge/compose.yaml
   - apps/seanime/compose.yaml
   - apps/searxng/compose.yaml
   - apps/sonarr/compose.yaml
@@ -74,6 +77,7 @@ include:
   - apps/stremio-trakt-addon/compose.yaml
   - apps/stremthru/compose.yaml
   - apps/syncribullet/compose.yaml
+  - apps/tandoor/compose.yaml
   - apps/tautulli/compose.yaml
   - apps/thelounge/compose.yaml
   - apps/tmdb-addon/compose.yaml
@@ -85,6 +89,7 @@ include:
   - apps/tweakio/compose.yaml
   - apps/uptime-kuma/compose.yaml
   - apps/vaultwarden/compose.yaml
+  - apps/wallos/compose.yaml
   - apps/warp/compose.yaml
   - apps/watchtower/compose.yaml
   - apps/webstreamr/compose.yaml

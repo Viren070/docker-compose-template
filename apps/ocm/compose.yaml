@@ -1,0 +1,13 @@
+services:
+  ocm:
+    image: ghcr.io/iamneur0/ocm:latest
+    container_name: ocm
+    restart: unless-stopped
+    platform: linux/arm64
+    env_file:
+      - .env
+    volumes:
+      - ${DOCKER_DATA_DIR}/ocm/key.pem:/app/key.pem:ro
+    profiles:
+      - ocm
+      - all

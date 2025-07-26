@@ -1,0 +1,23 @@
+services:
+  fivefilters-full-text-rss:
+    image: heussd/fivefilters-full-text-rss:latest
+    container_name: fivefilters-full-text-rss
+    restart: unless-stopped
+    expose:
+      - 80
+    environment:
+      - FTR_ADMIN_PASSWORD=${FIVEFILTERS_ADMIN_PASSWORD:-}
+    labels:     
+      - "traefik.enable=true"
+      - "traefik.http.routers.fivefilters-full-text-rss.rule=Host(`${FIVEFILTERS_FULL_TEXT_RSS_HOSTNAME?}`)"
+      - "traefik.http.services.fivefilters-full-text-rss.loadbalancer.server.port=80"
+      - "traefik.http.routers.fivefilters-full-text-rss.entrypoints=websecure"
+      - "traefik.http.routers.fivefilters-full-text-rss.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fivefilters-full-text-rss.middlewares=authelia@docker"
+    volumes:
+      - ${DOCKER_DATA_DIR}/fivefilters-full-text-rss/cache:/var/www/html/cache/rss
+      - ${DOCKER_DATA_DIR}/fivefilters-full-text-rss/site_config:/var/www/html/site_config/custom
+    profiles:
+      - fivefilters-full-text-rss
+      - rss
+      - all
