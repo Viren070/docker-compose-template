@@ -1,0 +1,42 @@
+services:
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    expose:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_HOSTNAME?}`)"
+      - "traefik.http.routers.freshrss.entrypoints=websecure"
+      - "traefik.http.routers.freshrss.tls.certresolver=letsencrypt"
+      - "traefik.http.services.freshrss.loadbalancer.server.port=80"
+      - "traefik.http.routers.freshrss.middlewares=authelia@docker"
+    volumes:
+      # Recommended volume for FreshRSS persistent data such as configuration and SQLite databases
+      - ${DOCKER_DATA_DIR}/freshrss/data:/var/www/FreshRSS/data
+      # Optional volume for storing third-party extensions
+      - ${DOCKER_DATA_DIR}/freshrss/extensions:/var/www/FreshRSS/extensions
+    environment:
+      # A timezone http://php.net/timezones (default is UTC)
+      - TZ=${TZ}
+      # Cron job to refresh feeds at specified minutes
+      - CRON_MIN=2,32
+      # 'development' for additional logs; default is 'production'
+      - FRESHRSS_ENV=${FRESHRSS_ENV}
+      # Optional advanced parameter controlling the internal Apache listening port
+      - LISTEN=0.0.0.0:80
+      # Optional parameter, remove for automatic settings, set to 0 to disable,
+      # or (if you use a proxy) to a space-separated list of trusted IP ranges
+      - TRUSTED_PROXY=172.16.0.1/12 192.168.0.1/16
+      # Optional parameter, set to 1 to enable OpenID Connect (only available in our Debian image)
+      - OIDC_ENABLED=0
+      # Optional auto-install parameters (the Web interface install is recommended instead):
+      - FRESHRSS_INSTALL=--api-enabled --base-url ${BASE_URL} --default-user admin --language en
+      - FRESHRSS_USER=--api-password ${ADMIN_API_PASSWORD} --email ${ADMIN_EMAIL} --language en --password ${ADMIN_PASSWORD} --user admin
+    profiles:
+      - freshrss
+      - all

@@ -1,0 +1,20 @@
+services:
+  rss-bridge:
+    image: rssbridge/rss-bridge:latest
+    container_name: rss-bridge
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rss-bridge.rule=Host(`${RSS_BRIDGE_HOSTNAME?}`)"
+      - "traefik.http.services.rss-bridge.loadbalancer.server.port=80"
+      - "traefik.http.routers.rss-bridge.entrypoints=websecure"
+      - "traefik.http.routers.rss-bridge.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rss-bridge.middlewares=authelia@docker"
+    volumes:
+      - ${DOCKER_DATA_DIR}/rss-bridge/config:/config
+    profiles:
+      - rss-bridge
+      - rss
+      - all

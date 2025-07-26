@@ -734,6 +734,40 @@ access_control:
     - domain_regex: '^({{ env "TEMPLATE_STREMIO_ADDON_HOSTNAMES" | replace "," "|" | replace "." "\\." | replace " " "" }})$'
       policy: 'bypass'
 
+    ## FreshRSS API endpoints bypass authentication for RSS reader apps
+    - domain: '{{ env "TEMPLATE_FRESHRSS_HOSTNAME" }}'
+      resources:
+        - '^/api/.*$'
+        - '^/p/api/.*$'
+      policy: 'bypass'
+
+    ## Karakeep API endpoints bypass authentication for mobile apps and extensions
+    - domain: '{{ env "TEMPLATE_KARAKEEP_HOSTNAME" }}'
+      resources:
+        - '^/api/.*$'
+      policy: 'bypass'
+
+
+    ## Actual Budget API endpoints bypass authentication for sync clients
+    - domain: '{{ env "TEMPLATE_ACTUAL_BUDGET_HOSTNAME" }}'
+      resources:
+        - '^/api/.*$'
+        - '^/sync/.*$'
+        - '^/account/validate$'           # Account validation endpoint for sync
+        - '^/account/bootstrap$'          # Initial account setup only
+        - '^/account/needs-bootstrap$'    # Check if bootstrap is needed
+      policy: 'bypass'
+
+    ## Tandoor API endpoints bypass authentication for mobile apps and integrations
+    - domain: '{{ env "TEMPLATE_TANDOOR_HOSTNAME" }}'
+      resources:
+        - '^/api/.*$'
+        - '^/api-token-auth/.*$'
+        - '^/docs/.*$'
+        - '^/media/.*$'
+        - '^/openapi/.*$' 
+      policy: 'bypass'
+
     - domain: '*.{{ env "TEMPLATE_DOMAIN" }}'
       policy: 'two_factor'
 
