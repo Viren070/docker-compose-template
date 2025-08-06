@@ -28,6 +28,7 @@ include:
   - apps/honey/compose.yaml
   - apps/huntarr/compose.yaml
   - apps/immich/compose.yaml
+  - apps/iptvboss/compose.yaml
   - apps/it-tools/compose.yaml
   - apps/jackett/compose.yaml
   - apps/jackettio/compose.yaml
