@@ -12,7 +12,7 @@ services:
       - CRONITOR_SCHEDULE_NAME=IPTVBoss EPG Sync # Set a name for your Cronitor.io Job
       - XC_SERVER=false # Set to true to start the XC server on boot. By default the XCSERVER is set to false.
     expose:
-      - 6901 # Used by the VNC Server to connect to the container using a web browser.
+      - 6901 # Used by the VNC Server to connect to the container using a web browser. Default VNC password is vncpassword
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.iptvboss.rule=Host(`iptvboss.${DOMAIN}`)"
