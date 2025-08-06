@@ -1,0 +1,27 @@
+services:
+  iptvboss:
+    image: ghcr.io/groenator/iptvboss-docker:latest
+    container_name: iptvboss
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - CRON_SCHEDULE=0 0 * * * # Set the cron schedule for the cron job that will update the EPG data.
+      - CRONITOR_API_KEY=<your_cronitor_api_key>
+      - CRONITOR_SCHEDULE_NAME=IPTVBoss EPG Sync # Set a name for your Cronitor.io Job
+      - XC_SERVER=false # Set to true to start the XC server on boot. By default the XCSERVER is set to false.
+    expose:
+      - 6901 # Used by the VNC Server to connect to the container using a web browser.
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.iptvboss.rule=Host(`iptvboss.${DOMAIN}`)"
+      - "traefik.http.routers.iptvboss.entrypoints=websecure"
+      - "traefik.http.routers.iptvboss.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.iptvboss.middlewares=authelia@docker"
+      - "traefik.http.services.iptvboss.loadbalancer.server.port=6901"
+    volumes:
+      - "${DOCKER_DATA_DIR}/iptvboss:/headless/IPTVBoss"
+    profiles:
+      - iptvboss
+      - all
