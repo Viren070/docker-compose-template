@@ -1,0 +1,41 @@
+services:
+  stremio-ai-companion:
+    image: ghcr.io/willtho89/stremio-ai-companion:latest
+    container_name: stremio-ai-companion
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - 8000
+    depends_on:
+      stremio-ai-companion-redis:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stremio-ai-companion.rule=Host(`${STREMIO_AI_COMPANION_HOSTNAME?}`)"
+      - "traefik.http.routers.stremio-ai-companion.entrypoints=websecure"
+      - "traefik.http.routers.stremio-ai-companion.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.stremio-ai-companion.middlewares=authelia@docker"
+      - "traefik.http.services.stremio-ai-companion.loadbalancer.server.port=8000"
+      - "traefik.http.middlewares.test-compress.compress=true"
+    profiles: 
+      - stremio-ai-companion
+      - stremio
+      - all
+
+  stremio-ai-companion-redis: 
+    image: redis:latest
+    container_name: stremio-ai-companion-redis
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_DATA_DIR}/stremio-ai-companion/cache:/data
+    command: redis-server --appendonly yes --save 60 1
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: 
+      - stremio-ai-companion
+      - stremio
+      - all
