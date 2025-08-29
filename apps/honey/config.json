@@ -15,13 +15,19 @@
 	"services": [
 		{
 			"name": "Arcane",
-			"desc": "Personal dashboard.",
+			"desc": "Docker management interface.",
 			"href": "https://arcane.yourdomain.com",
-			"icon": "https://github.com/ofkm/arcane/blob/main/.github/assets/arcane.png"
+			"icon": "https://raw.githubusercontent.com/ofkm/arcane/refs/heads/main/.github/assets/arcane.png"
 		},
 		{
+      "name": "Authelia",
+      "desc": "Authentication and Authorization service.",
+      "href": "https://auth.yourdomain.com",
+      "icon": "https://raw.githubusercontent.com/authelia/authelia/refs/heads/master/docs/static/svgs/branding/logo-cropped.svg"
+    },
+		{
 			"name": "dash.",
-			"desc": "Personal dashboard.",
+			"desc": "A modern Server dashboard.",
 			"href": "https://dash.yourdomain.com",
 			"icon": "https://getdashdot.com/img/logo512.png"
 		},
@@ -31,6 +37,12 @@
 			"href": "https://dozzle.yourdomain.com",
 			"icon": "https://raw.githubusercontent.com/amir20/dozzle/19bb8659135e4232523d45ff8e948a0907b2701c/docs/public/logo.svg"
 		},
+		{
+      "name": "Traefik",
+      "desc": "HTTP reverse proxy and load balancer.",
+      "href": "https://traefik.yourdomain.com",
+      "icon": "https://icon.icepanel.io/Technology/svg/Traefik-Proxy.svg"
+    },
 		{
 			"name": "Uptime Kuma",
 			"desc": "Self-hosted uptime monitor.",
@@ -69,7 +81,7 @@
 		},
 		{
 			"name": "AIOStreams",
-			"desc": "All-in-one streaming service.",
+			"desc": "All-In-One streaming add-on for Stremio.",
 			"href": "https://aiostreams.yourdomain.com",
 			"icon": "https://raw.githubusercontent.com/Viren070/AIOStreams/refs/heads/main/packages/frontend/public/assets/logo.png"
 		},
@@ -77,17 +89,17 @@
 			"name": "AIOStremio",
 			"desc": "All-in-one streaming service.",
 			"href": "https://aiostremio.yourdomain.com",
-			"icon": ""
+			"icon": "https://lh3.googleusercontent.com/d/1uudcj58lk4NXt9Qfk-1PC9vAH0LuPY0D"
 		},
 		{
 			"name": "Comet",
-			"desc": "Torrent streaming service.",
+			"desc": "Torrent/Debrid indexer for Stremio.",
 			"href": "https://comet.yourdomain.com",
 			"icon": "https://i.imgur.com/jmVoVMu.jpeg"
 		},
 		{
 			"name": "MediaFusion",
-			"desc": "Media manager.",
+			"desc": "Torrent/Debrid indexer for Stremio/Kodi.",
 			"href": "https://mediafusion.yourdomain.com",
 			"icon": "https://raw.githubusercontent.com/mhdzumair/MediaFusion/main/resources/images/mediafusion_logo.png"
 		},
@@ -105,13 +117,13 @@
 		},
 		{
 			"name": "Easynews+",
-			"desc": "Easynews add-on for Stremio.",
+			"desc": "Stremio add-on for usenet content.",
 			"href": "https://easynews-plus.yourdomain.com",
 			"icon": "https://pbs.twimg.com/profile_images/479627852757733376/8v9zH7Yo_400x400.jpeg"
 		},
 		{
 			"name": "TMDB Addon",
-			"desc": "Stremio add-on for TMDB.",
+			"desc": "Stremio add-on for TMDB metadata.",
 			"href": "https://tmdb-addon.yourdomain.com",
 			"icon": "https://raw.githubusercontent.com/mrcanelas/tmdb-addon/refs/heads/main/public/logo.png"
 		},
@@ -129,31 +141,31 @@
 		},
 		{
 			"name": "MediaFlow",
-			"desc": "Stremio add-on for torrents.",
-			"href": "https://mediaflow.yourdomain.com",
-			"icon": "https://mediaflow.yourdomain.com/logo.png"
+			"desc": "Proxy server for media streams.",
+			"href": "https://mediaflow-proxy.yourdomain.com",
+			"icon": "https://raw.githubusercontent.com/mhdzumair/mediaflow-proxy/refs/heads/main/mediaflow_proxy/static/logo.png"
 		},
 		{
 			"name": "StremThru",
-			"desc": "Stremio add-on for torrents.",
+			"desc": "Companion suite for Stremio.",
 			"href": "https://stremthru.yourdomain.com",
 			"icon": "https://emojiapi.dev/api/v1/sparkles/256.png"
 		},
 		{
 			"name": "Stremio Addon Manager",
-			"desc": "Stremio add-on for torrents.",
+			"desc": "Add-on manager for Stremio.",
 			"href": "https://addon-manager.yourdomain.com",
-			"icon": "https://addon-manager.yourdomain.com/logo.png"
+			"icon": "https://raw.githubusercontent.com/Viren070/stremio-addon-manager/refs/heads/main/public/logo.png"
 		},
 		{
 			"name": "Stremio Account Bootstrapper",
 			"desc": "Stremio account bootstrapper.",
 			"href": "https://stremio-account-bootstrapper.yourdomain.com",
-			"icon": "https://stremio-account-bootstrapper.yourdomain.com/logo.png"
+			"icon": "https://raw.githubusercontent.com/DryKillLogic/stremio-account-bootstrapper/refs/heads/main/public/favicon.ico"
 		},
 		{
 			"name": "Stremio Server",
-			"desc": "Stremio add-on for torrents.",
+			"desc": "Stremio streaming server.",
 			"href": "https://stremio-server.yourdomain.com",
 			"icon": "https://www.stremio.com/website/stremio-purple-small.png"
 		},
@@ -183,10 +195,16 @@
 		},
 		{
 			"name": "Plausible",
-			"desc": "Privacy-friendly analytics.",
+			"desc": "Privacy-friendly web analytics.",
 			"href": "https://plausible.yourdomain.com",
 			"icon": "https://raw.githubusercontent.com/plausible/docs/master/static/img/plausible-analytics-icon-top.png"
 		},
+		{
+      "name": "Portainer",
+      "desc": "Manage Docker, Swarm, Kubernetes & ACI.",
+      "href": "https://portainer.yourdomain.com",
+      "icon": "https://avatars.githubusercontent.com/u/22225832?s=280&v=4"
+    },
 		{
 			"name": "Vaultwarden",
 			"desc": "Password Manager",
