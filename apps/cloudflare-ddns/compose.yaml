@@ -38,6 +38,7 @@ services:
         ${EASYNEWS_PLUS_PLUS_HOSTNAME},
         ${FRESHRSS_HOSTNAME},
         ${FIVEFILTERS_FULL_TEXT_RSS_HOSTNAME}, 
+        ${HOMARR_HOSTNAME},
         ${HONEY_HOSTNAME},
         ${HUNTARR_HOSTNAME},
         ${IMMICH_HOSTNAME},

@@ -1,0 +1,22 @@
+services:
+  homarr:
+    image: ghcr.io/homarr-labs/homarr:latest
+    container_name: homarr
+    restart: unless-stopped
+    expose:
+      - 7575
+    env_file:
+      - .env
+    labels:
+      traefik.enable: true
+      traefik.http.routers.homarr.rule: Host(`${HOMARR_HOSTNAME?}`)
+      traefik.http.routers.homarr.entrypoints: websecure
+      traefik.http.routers.homarr.tls.certresolver: letsencrypt
+      traefik.http.services.homarr.loadbalancer.server.port: 7575
+      traefik.http.routers.homarr.middlewares: authelia@docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DOCKER_DATA_DIR}/homarr:/appdata
+    profiles:
+      - homarr
+      - all

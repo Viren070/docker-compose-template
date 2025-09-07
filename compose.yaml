@@ -28,6 +28,7 @@ include:
   - apps/fivefilters-full-text-rss/compose.yaml
   - apps/freshrss/compose.yaml
   - apps/gluetun/compose.yaml
+  - apps/homarr/compose.yaml
   - apps/honey/compose.yaml
   - apps/huntarr/compose.yaml
   - apps/immich/compose.yaml
