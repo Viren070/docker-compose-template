@@ -1,6 +1,6 @@
 services:
   arcane:
-    image: ghcr.io/ofkm/arcane:latest
+    image: ghcr.io/getarcaneapp/arcane:latest
     container_name: arcane
     restart: unless-stopped
     expose:
