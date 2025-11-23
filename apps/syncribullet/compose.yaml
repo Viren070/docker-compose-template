@@ -26,10 +26,8 @@ services:
         RUN npm ci --ignore-scripts --only=production && npm cache clean --force
 
         # Copy built files from the builder stage
-        COPY --from=builder /build/public ./public
-        COPY --from=builder /build/adapters ./adapters
+        COPY --from=builder /build/dist ./dist
         COPY --from=builder /build/server ./server
-
         COPY --from=builder /build/node_modules ./node_modules
 
         ENV NODE_ENV=production
