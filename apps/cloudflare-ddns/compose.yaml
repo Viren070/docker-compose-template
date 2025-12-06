@@ -49,7 +49,7 @@ services:
         ${JACKETT_HOSTNAME},
         ${JACKETTIO_HOSTNAME},
         ${JELLYFIN_HOSTNAME},
-        ${JELLYSEER_HOSTNAME},
+        ${JELLYSEERR_HOSTNAME},
         ${KARAKEEP_HOSTNAME},
         ${LIBRESPEED_HOSTNAME},
         ${MEALIE_HOSTNAME},
