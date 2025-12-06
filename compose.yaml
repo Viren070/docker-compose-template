@@ -40,7 +40,7 @@ include:
   - apps/jackett/compose.yaml
   - apps/jackettio/compose.yaml
   - apps/jellyfin/compose.yaml
-  - apps/jellyseer/compose.yaml
+  - apps/jellyseerr/compose.yaml
   - apps/karakeep/compose.yaml
   - apps/kometa/compose.yaml
   - apps/librespeed/compose.yaml
