@@ -62,9 +62,9 @@
 			"icon": "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/refs/heads/master/branding/tizen/icon.png"
 		},
 		{
-			"name": "JellySeer",
+			"name": "JellySeerr",
 			"desc": "Jellyfin Media manager",
-			"href": "https://jellyseer.yourdomain.com",
+			"href": "https://jellyseerr.yourdomain.com",
 			"icon": "https://raw.githubusercontent.com/fallenbagel/jellyseerr/refs/heads/develop/public/android-chrome-512x512.png"
 		},
 		{
