@@ -1,7 +1,7 @@
 services:
-  jellyseer:
+  jellyseerr:
     image: fallenbagel/jellyseerr:latest
-    container_name: jellyseer
+    container_name: jellyseerr
     restart: unless-stopped
     expose:
       - 5055
@@ -10,14 +10,14 @@ services:
       - LOG_LEVEL=debug
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyseer.rule=Host(`${JELLYSEER_HOSTNAME?}`)"
-      - "traefik.http.routers.jellyseer.entrypoints=websecure"
-      - "traefik.http.routers.jellyseer.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.jellyseerr.rule=Host(`${JELLYSEERR_HOSTNAME?}`)"
+      - "traefik.http.routers.jellyseerr.entrypoints=websecure"
+      - "traefik.http.routers.jellyseerr.tls.certresolver=letsencrypt"
     volumes:
-      - ${DOCKER_DATA_DIR}/jellyseer:/app/config
+      - ${DOCKER_DATA_DIR}/jellyseerr:/app/config
     depends_on:
       decypharr:
         condition: service_healthy
     profiles:
-      - jellyseer
+      - jellyseerr
       - all
