@@ -1,11 +1,8 @@
 services:
   webstreamr:
-    image: webstreamr
+    image: webstreamr/webstreamr
     container_name: webstreamr
     restart: unless-stopped
-    build:
-      context: https://github.com/webstreamr/webstreamr.git
-      dockerfile: Dockerfile
     expose:
       - 51546
     env_file:
