@@ -1,7 +1,0 @@
-torrentio:
-  base_url: https://torrentio.strem.fun/
-  options: "providers=yts,eztv,rarbg,1337x,thepiratebay,kickasstorrents,torrentgalaxy,magnetdl,horriblesubs,nyaasi,tokyotosho,anidex|sort=qualitysize|qualityfilter=scr,cam"
-
-tmdb:
-  api_key: "" # If empty, defaults to 10 episodes for everything
-  cache_size: 1000

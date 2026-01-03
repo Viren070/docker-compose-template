@@ -3,17 +3,15 @@ services:
     image: varthe/tweakio:latest
     container_name: tweakio
     restart: unless-stopped
-    # Run this container in the same network as warp, so it can access Torrentio
-    # If not blocked by Torrentio, you can remove this line.
-    # Will need to be accesssed at http://warp:3185 if using warp.
-    network_mode: service:warp
+    ports:
+      - 3185:3185
     user: $PUID:$PGID
-    volumes:
-      - ./config.yaml:/app/config.yaml
+    env_file:
+      - .env
     profiles:
       - all
       - tweakio
     depends_on:
-      warp:
+      gluetun:
         condition: service_healthy
         restart: true
