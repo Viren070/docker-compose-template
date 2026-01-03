@@ -14,6 +14,10 @@ services:
       - "traefik.http.routers.usenet-streamer.tls.certresolver=letsencrypt"
       - "traefik.http.routers.usenet-streamer.middlewares=authelia@docker"
       - "traefik.http.services.usenet-streamer.loadbalancer.server.port=7000"
+    environment:
+      - CONFIG_DIR=/data/config
+    volumes:
+      - ${DOCKER_DATA_DIR}/usenetstreamer:/data/config
     profiles:
       - usenet-streamer
       - all
