@@ -101,6 +101,7 @@ include:
   - apps/warp/compose.yaml
   - apps/watchtower/compose.yaml
   - apps/webstreamr/compose.yaml
+  - apps/wud/compose.yaml
   - apps/yamtrack/compose.yaml
   - apps/zilean/compose.yaml
   - apps/zipline/compose.yaml

@@ -1,0 +1,22 @@
+services:
+  wud:
+    image: getwud/wud
+    container_name: wud
+    restart: unless-stopped
+    expose:
+      - 3000
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wud.rule=Host(`${WUD_HOSTNAME?}`)"
+      - "traefik.http.routers.wud.entrypoints=websecure"
+      - "traefik.http.routers.wud.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.wud.middlewares=authelia@docker"
+      - "traefik.http.services.wud.loadbalancer.server.port=3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./compose.yaml:/config/compose.yaml:ro
+    profiles:
+      - wud
+      - all
