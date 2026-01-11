@@ -17,7 +17,7 @@ services:
     environment:
       - CONFIG_DIR=/data/config
     volumes:
-      - ${DOCKER_DATA_DIR}/usenetstreamer:/data/config
+      - ${DOCKER_DATA_DIR}/usenet-streamer:/data/config
     profiles:
       - usenet-streamer
       - all
