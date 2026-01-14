@@ -1,0 +1,19 @@
+services:
+  trakt-tv:
+    image: ghcr.io/rrattani/trakt-tv:latest
+    container_name: trakt-tv
+    restart: unless-stopped
+    expose:
+      - 63355
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.trakt-tv.rule=Host(`${TRAKT_TV_HOSTNAME?}`)"
+      - "traefik.http.routers.trakt-tv.entrypoints=websecure"
+      - "traefik.http.routers.trakt-tv.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.trakt-tv.middlewares=authelia@docker"
+      - "traefik.http.services.trakt-tv.loadbalancer.server.port=63355"
+    profiles:
+      - trakt-tv
+      - all
