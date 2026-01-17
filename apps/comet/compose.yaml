@@ -31,8 +31,8 @@ services:
       - comet
       - all
 
-  postgres:
-    container_name: comet-postgres
+  comet_postgres:
+    container_name: comet_postgres
     image: postgres:18-alpine
     restart: unless-stopped
     environment:
