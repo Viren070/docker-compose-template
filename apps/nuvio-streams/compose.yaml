@@ -1,0 +1,38 @@
+services:
+  nuvio-streams:
+    image: ghcr.io/rrattani/nuvio-streams:latest
+    container_name: nuvio-streams
+    expose:
+      - ${PORT:-7000}
+    env_file:
+      - .env
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nuvio-streams.rule=Host(`${NUVIO_STREAMS_HOSTNAME?}`)"
+      - "traefik.http.routers.nuvio-streams.entrypoints=websecure"
+      - "traefik.http.routers.nuvio-streams.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.nuvio-streams.middlewares=authelia@docker"
+      - "traefik.http.services.nuvio-streams.loadbalancer.server.port=${PORT:-7000}"
+      - "traefik.http.middlewares.test-compress.compress=true"
+    profiles: 
+      - nuvio-streams
+      - all
+
+  # If you would like to use REDIS for cahcing, uncomment the followling lines,
+  # and set the USE_REDIS_CACHE to true and REDIS_URL to redis://nuvio-streams_redis:6379 in .env
+  # nuvio-streams_redis: 
+  #   image: redis:latest
+  #   container_name: nuvio-streams_redis
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ${DOCKER_DATA_DIR}/nuvio-streams/cache:/data
+  #   command: redis-server --appendonly yes --save 60 1 --maxmemory 256mb --maxmemory-policy allkeys-lru
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   profiles: 
+  #     - nuvio-streams
+  #     - all
