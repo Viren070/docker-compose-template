@@ -1,8 +1,0 @@
-include:
-  - blackhole/compose.yaml
-  - repair/compose.yaml
-  # The below are optional and can be uncommented if needed
-  # You must have plex setup already before using these.
-  # - plex_authentication/compose.yaml
-  # - plex_watchlist/compose.yaml
-  # - plex_requests/compose.yaml
