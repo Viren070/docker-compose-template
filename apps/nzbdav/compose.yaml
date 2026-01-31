@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.nzbdav.tls.certresolver=letsencrypt"
       - "traefik.http.routers.nzbdav.middlewares=authelia@docker"
     volumes:
-      - ./config:/config
+      - ${DOCKER_DATA_DIR}/nzbdav:/config
     profiles:
       - nzbdav
       - all
