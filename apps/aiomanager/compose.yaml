@@ -1,0 +1,27 @@
+---
+services:
+  aiomanager:
+    image: ghcr.io/sonicx161/aiomanager:latest
+    container_name: aiomanager
+    restart: unless-stopped
+    expose:
+      - ${PORT:-1610}
+    env_file:
+      - .env
+    volumes:
+      - ${DOCKER_DATA_DIR}/aiomanager/data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.aiomanager.rule=Host(`${AIOMANAGER_HOSTNAME?}`)"
+      - "traefik.http.routers.aiomanager.entrypoints=websecure"
+      - "traefik.http.routers.aiomanager.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.aiomanager.middlewares=authelia@docker"
+      - "traefik.http.services.aiomanager.loadbalancer.server.port=${PORT:-1610}"
+    profiles:
+      - aiomanager
+      - all
