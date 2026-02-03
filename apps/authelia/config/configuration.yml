@@ -739,7 +739,14 @@ access_control:
       resources:
         - '^/api.*$'
         - '^/content.*$'
+        - '^/view/content.*$'
         - '^/$'
+
+    ## Hydra instance
+    - domain: '{{ env "TEMPLATE_NZBHYDRA2_HOSTNAME" }}'
+      policy: 'bypass'
+      resources:
+        - '^/getnzb\/api.*$'
 
     - domain: '{{ env "TEMPLATE_ALTMOUNT_HOSTNAME" }}'
       policy: 'bypass'
