@@ -3,6 +3,7 @@ include:
   - apps/addon-manager/compose.yaml
   - apps/adguard/compose.yaml
   - apps/aiolists/compose.yaml
+  - apps/aiomanager/compose.yaml
   - apps/aiometadata/compose.yaml
   - apps/aiostreams/compose.yaml
   - apps/aiostremio/compose.yaml
