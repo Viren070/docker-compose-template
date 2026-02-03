@@ -1,6 +1,6 @@
 services:
   addon-manager:
-    image: reddravenn/stremio-addon-manager:latest
+    image: d1nn/stremio-addon-manager:main
     container_name: addon-manager
     restart: unless-stopped
     expose:
