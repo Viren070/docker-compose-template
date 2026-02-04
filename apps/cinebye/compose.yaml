@@ -1,0 +1,17 @@
+services:
+  cinebye:
+    image: d1nn/stremio-addon-manager:main
+    container_name: cinebye
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cinebye.rule=Host(`${CINEBYE_HOSTNAME?}`)"
+      - "traefik.http.routers.cinebye.entrypoints=websecure"
+      - "traefik.http.routers.cinebye.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.cinebye.middlewares=authelia@docker"
+    profiles:
+      - cinebye
+      - stremio
+      - all
