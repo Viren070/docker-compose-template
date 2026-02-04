@@ -14,7 +14,6 @@ services:
       DOMAINS: >
         ${ACTUAL_BUDGET_HOSTNAME},
         ${ADDON_MANAGER_HOSTNAME},
-        ${CINEBYE_HOSTNAME},
         ${ADGUARD_HOSTNAME},
         ${AIOLISTS_HOSTNAME},
         ${AIOMETADATA_HOSTNAME},
@@ -30,6 +29,7 @@ services:
         ${BAZARR4K_HOSTNAME},
         ${BESZEL_HOSTNAME},
         ${BITMAGNET_HOSTNAME},
+        ${CINEBYE_HOSTNAME},
         ${COMET_HOSTNAME},
         ${DASHDOT_HOSTNAME},
         ${DEBRIDAV_HOSTNAME},
