@@ -17,7 +17,7 @@ services:
       - traefik.http.routers.comet.tls.certresolver=letsencrypt
       - traefik.http.routers.comet.middlewares=authelia@docker
     volumes:
-      - ${DOCKER_DATA_DIR}/comet:/data
+      - ${DOCKER_DATA_DIR}/comet:/app/data
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:2020/health"]
       interval: 5s
