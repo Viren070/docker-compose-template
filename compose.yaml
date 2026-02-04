@@ -2,7 +2,6 @@ include:
   - apps/actual-budget/compose.yaml
   - apps/addon-manager/compose.yaml
   - apps/adguard/compose.yaml
-  - apps/cinebye/compose.yaml
   - apps/aiolists/compose.yaml
   - apps/aiometadata/compose.yaml
   - apps/aiostreams/compose.yaml
@@ -18,6 +17,7 @@ include:
   - apps/bitmagnet/compose.yaml
   - apps/borgmatic/compose.yaml
   - apps/byparr/compose.yaml
+  - apps/cinebye/compose.yaml
   - apps/cloudflare-ddns/compose.yaml
   - apps/comet/compose.yaml
   - apps/crowdsec/compose.yaml
