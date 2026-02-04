@@ -49,6 +49,7 @@ services:
       TEMPLATE_TANDOOR_HOSTNAME: ${TANDOOR_HOSTNAME?}
       TEMPLATE_ALTMOUNT_HOSTNAME: ${ALTMOUNT_HOSTNAME?}
       TEMPLATE_NZBDAV_HOSTNAME: ${NZBDAV_HOSTNAME?}
+      TEMPLATE_NZBHYDRA2_HOSTNAME: ${NZBHYDRA2_HOSTNAME?}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.authelia.rule=Host(`${AUTHELIA_HOSTNAME?}`)"
