@@ -3,19 +3,23 @@ services:
     image: ghcr.io/iamneur0/syncio:private
     container_name: syncio
     restart: unless-stopped
-    user: "${PUID}:${PGID}"
+    user: "${PUID:-1000}:${PGID:-1000}"
+    expose:
+      - 3000
     environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
-      - DEBUG=false
-      - NEXT_PUBLIC_DEBUG=false
+      JWT_SECRET: "${JWT_SECRET:-jwt-secret-key}"
+      ENCRYPTION_KEY: "${ENCRYPTION_KEY:-encryption-key}"
+      UID: "${PUID:-1000}"
+      GID: "${PGID:-1000}"
+      DEBUG: "false"
+      NEXT_PUBLIC_DEBUG: "false"
     labels:
-      - "autoheal=true"
       - "traefik.enable=true"
       - "traefik.http.routers.syncio.rule=Host(`${SYNCIO_HOSTNAME?}`)"
       - "traefik.http.routers.syncio.entrypoints=websecure"
       - "traefik.http.routers.syncio.tls.certresolver=letsencrypt"
       - "traefik.http.routers.syncio.middlewares=authelia@docker"
+      - "traefik.http.services.syncio.loadbalancer.server.port=3000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 30s
@@ -24,8 +28,6 @@ services:
       start_period: 60s
     volumes:
       - ${DOCKER_DATA_DIR}/syncio:/app/data
-    expose:
-      - 3000
     logging:
       driver: json-file
       options:
