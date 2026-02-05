@@ -1,222 +1,221 @@
 {
-	"ui": {
-		"name": "Dashboard",
-		"desc": "Nice and sweet place for all your self-hosted services.",
-		"icon": "img/icon.png",
-		"wallpaper": "img/background.jpg",
-		"wallpaper_dark": "img/background-dark.jpg",
-		"dark_mode": "Auto",
-		"open_new_tab": true,
-		"ping_dots": false,
-		"blur": true,
-		"animations": true,
-		"trusted_domains": ["yourdomain.com"]
-	},
-	"services": [
-		{
-			"name": "Arcane",
-			"desc": "Docker management interface.",
-			"href": "https://arcane.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/ofkm/arcane/refs/heads/main/.github/assets/arcane.png"
-		},
-		{
+  "ui": {
+    "name": "Dashboard",
+    "desc": "Nice and sweet place for all your self-hosted services.",
+    "icon": "img/icon.png",
+    "wallpaper": "img/background.jpg",
+    "wallpaper_dark": "img/background-dark.jpg",
+    "dark_mode": "Auto",
+    "open_new_tab": true,
+    "ping_dots": false,
+    "blur": true,
+    "animations": true,
+    "trusted_domains": ["${DOMAIN}"]
+  },
+  "services": [
+    {
+      "name": "Arcane",
+      "desc": "Docker management interface.",
+      "href": "https://${ARCANE_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/ofkm/arcane/refs/heads/main/.github/assets/arcane.png"
+    },
+    {
       "name": "Authelia",
       "desc": "Authentication and Authorization service.",
-      "href": "https://auth.yourdomain.com",
+      "href": "https://${AUTHELIA_HOSTNAME}",
       "icon": "https://raw.githubusercontent.com/authelia/authelia/refs/heads/master/docs/static/svgs/branding/logo-cropped.svg"
     },
-		{
-			"name": "dash.",
-			"desc": "A modern Server dashboard.",
-			"href": "https://dash.yourdomain.com",
-			"icon": "https://getdashdot.com/img/logo512.png"
-		},
-		{
-			"name": "Dozzle",
-			"desc": "Docker logs in the browser.",
-			"href": "https://dozzle.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/amir20/dozzle/19bb8659135e4232523d45ff8e948a0907b2701c/docs/public/logo.svg"
-		},
-		{
+    {
+      "name": "dash.",
+      "desc": "A modern Server dashboard.",
+      "href": "https://${DASHDOT_HOSTNAME}",
+      "icon": "https://getdashdot.com/img/logo512.png"
+    },
+    {
+      "name": "Dozzle",
+      "desc": "Docker logs in the browser.",
+      "href": "https://${DOZZLE_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/amir20/dozzle/19bb8659135e4232523d45ff8e948a0907b2701c/docs/public/logo.svg"
+    },
+    {
       "name": "Traefik",
       "desc": "HTTP reverse proxy and load balancer.",
-      "href": "https://traefik.yourdomain.com",
+      "href": "https://${TRAEFIK_HOSTNAME}",
       "icon": "https://icon.icepanel.io/Technology/svg/Traefik-Proxy.svg"
     },
-		{
-			"name": "Uptime Kuma",
-			"desc": "Self-hosted uptime monitor.",
-			"href": "https://kuma.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/louislam/uptime-kuma/refs/heads/master/public/favicon.ico"
-		},
-		{
-			"name": "Status Page",
-			"desc": "Status page for all services.",
-			"href": "https://status.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/louislam/uptime-kuma/refs/heads/master/public/favicon.ico"
-		},
-		{
-			"name": "Jellyfin",
-			"desc": "Media server",
-			"href": "https://jellyfin.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/refs/heads/master/branding/tizen/icon.png"
-		},
-		{
-			"name": "JellySeerr",
-			"desc": "Jellyfin Media manager",
-			"href": "https://jellyseerr.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/fallenbagel/jellyseerr/refs/heads/develop/public/android-chrome-512x512.png"
-		},
-		{
-			"name": "Plex",
-			"desc": "Media server",
-			"href": "https://plex.yourdomain.com",
-			"icon": "https://global.synologydownload.com/download/Package/img/PlexMediaServer/1.40.4.8840-72008840/thumb_256.png"
-		},
-		{
-			"name": "Seanime",
-			"desc": "Anime streaming service.",
-			"href": "https://seanime.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/5rahim/seanime/refs/heads/main/seanime-web/public/logo.png"
-		},
-		{
-			"name": "AIOStreams",
-			"desc": "All-In-One streaming add-on for Stremio.",
-			"href": "https://aiostreams.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/Viren070/AIOStreams/refs/heads/main/packages/frontend/public/assets/logo.png"
-		},
-		{
-			"name": "AIOStremio",
-			"desc": "All-in-one streaming service.",
-			"href": "https://aiostremio.yourdomain.com",
-			"icon": "https://lh3.googleusercontent.com/d/1uudcj58lk4NXt9Qfk-1PC9vAH0LuPY0D"
-		},
-		{
-			"name": "Comet",
-			"desc": "Torrent/Debrid indexer for Stremio.",
-			"href": "https://comet.yourdomain.com",
-			"icon": "https://i.imgur.com/jmVoVMu.jpeg"
-		},
-		{
-			"name": "MediaFusion",
-			"desc": "Torrent/Debrid indexer for Stremio/Kodi.",
-			"href": "https://mediafusion.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/mhdzumair/MediaFusion/main/resources/images/mediafusion_logo.png"
-		},
-		{
-			"name": "Stremio-Jackett",
-			"desc": "Stremio add-on for Jackett.",
-			"href": "https://stremio-jackett.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/Jackett/Jackett/refs/heads/master/src/Jackett.Common/Content/jacket_medium.png"
-		},
-		{
-			"name": "Jackettio",
-			"desc": "Stremio add-on for Jackett.",
-			"href": "https://jackettio.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/Jackett/Jackett/refs/heads/master/src/Jackett.Common/Content/jacket_medium.png"
-		},
-		{
-			"name": "Easynews+",
-			"desc": "Stremio add-on for usenet content.",
-			"href": "https://easynews-plus.yourdomain.com",
-			"icon": "https://pbs.twimg.com/profile_images/479627852757733376/8v9zH7Yo_400x400.jpeg"
-		},
-		{
-			"name": "TMDB Addon",
-			"desc": "Stremio add-on for TMDB metadata.",
-			"href": "https://tmdb-addon.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/mrcanelas/tmdb-addon/refs/heads/main/public/logo.png"
-		},
-		{
-			"name": "Stremio Catalog Providers",
-			"desc": "Stremio add-on for catalog providers.",
-			"href": "https://catalog-providers.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/redd-ravenn/stremio-catalog-providers/refs/heads/main/public/assets/logo.png"
-		},
-		{
-			"name": "Stremio Trakt Addon",
-			"desc": "Stremio add-on for Trakt.",
-			"href": "https://trakt-addon.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/redd-ravenn/stremio-catalog-providers/refs/heads/main/public/assets/logoTrakt.png"
-		},
-		{
-			"name": "MediaFlow",
-			"desc": "Proxy server for media streams.",
-			"href": "https://mediaflow-proxy.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/mhdzumair/mediaflow-proxy/refs/heads/main/mediaflow_proxy/static/logo.png"
-		},
-		{
-			"name": "StremThru",
-			"desc": "Companion suite for Stremio.",
-			"href": "https://stremthru.yourdomain.com",
-			"icon": "https://emojiapi.dev/api/v1/sparkles/256.png"
-		},
-		{
-			"name": "Stremio Addon Manager",
-			"desc": "Add-on manager for Stremio.",
-			"href": "https://addon-manager.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/Viren070/stremio-addon-manager/refs/heads/main/public/logo.png"
-		},
-		{
-			"name": "Cinebye",
-			"desc": "Add-on manager for Stremio with backup/restore and Cinemeta controls.",
-			"href": "https://cinebye.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/0xConstant1/stremio-addon-manager/refs/heads/main/public/logo.png"
-		},
-		{
-			"name": "Stremio Account Bootstrapper",
-			"desc": "Stremio account bootstrapper.",
-			"href": "https://stremio-account-bootstrapper.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/DryKillLogic/stremio-account-bootstrapper/refs/heads/main/public/favicon.ico"
-		},
-		{
-			"name": "Stremio Server",
-			"desc": "Stremio streaming server.",
-			"href": "https://stremio-server.yourdomain.com",
-			"icon": "https://www.stremio.com/website/stremio-purple-small.png"
-		},
-		{
-			"name": "Prowlarr",
-			"desc": "Indexer manager.",
-			"href": "https://prowlarr.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/Prowlarr/Prowlarr/refs/heads/develop/Logo/512.png"
-		},
-		{
-			"name": "Jackett",
-			"desc": "Torrent indexer.",
-			"href": "https://jackett.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/Jackett/Jackett/refs/heads/master/src/Jackett.Common/Content/jacket_medium.png"
-		},
-		{
-			"name": "NZBHydra2",
-			"desc": "Usenet indexer.",
-			"href": "https://nzbhydra.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/theotherp/nzbhydra2/refs/heads/master/core/ui-src/img/logo.png"
-		},
-		{
-			"name": "SearXNG",
-			"desc": "Privacy-respecting search engine.",
-			"href": "https://searxng.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/searxng/searxng/refs/heads/master/searx/static/themes/simple/img/favicon.png"
-		},
-		{
-			"name": "Plausible",
-			"desc": "Privacy-friendly web analytics.",
-			"href": "https://plausible.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/plausible/docs/master/static/img/plausible-analytics-icon-top.png"
-		},
-		{
+    {
+      "name": "Uptime Kuma",
+      "desc": "Self-hosted uptime monitor.",
+      "href": "https://${KUMA_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/louislam/uptime-kuma/refs/heads/master/public/favicon.ico"
+    },
+    {
+      "name": "Status Page",
+      "desc": "Status page for all services.",
+      "href": "https://${UPTIME_KUMA_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/louislam/uptime-kuma/refs/heads/master/public/favicon.ico"
+    },
+    {
+      "name": "Jellyfin",
+      "desc": "Media server",
+      "href": "https://${JELLYFIN_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/refs/heads/master/branding/tizen/icon.png"
+    },
+    {
+      "name": "JellySeerr",
+      "desc": "Jellyfin Media manager",
+      "href": "https://${JELLYSEERR_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/fallenbagel/jellyseerr/refs/heads/develop/public/android-chrome-512x512.png"
+    },
+    {
+      "name": "Plex",
+      "desc": "Media server",
+      "href": "https://${PLEX_HOSTNAME}",
+      "icon": "https://global.synologydownload.com/download/Package/img/PlexMediaServer/1.40.4.8840-72008840/thumb_256.png"
+    },
+    {
+      "name": "Seanime",
+      "desc": "Anime streaming service.",
+      "href": "https://${SEANIME_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/5rahim/seanime/refs/heads/main/seanime-web/public/logo.png"
+    },
+    {
+      "name": "AIOStreams",
+      "desc": "All-In-One streaming add-on for Stremio.",
+      "href": "https://${AIOSTREAMS_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/Viren070/AIOStreams/refs/heads/main/packages/frontend/public/assets/logo.png"
+    },
+    {
+      "name": "AIOStremio",
+      "desc": "All-in-one streaming service.",
+      "href": "https://${AIOSTREMIO_HOSTNAME}",
+      "icon": "https://lh3.googleusercontent.com/d/1uudcj58lk4NXt9Qfk-1PC9vAH0LuPY0D"
+    },
+    {
+      "name": "Comet",
+      "desc": "Torrent/Debrid indexer for Stremio.",
+      "href": "https://${COMET_HOSTNAME}",
+      "icon": "https://i.imgur.com/jmVoVMu.jpeg"
+    },
+    {
+      "name": "MediaFusion",
+      "desc": "Torrent/Debrid indexer for Stremio/Kodi.",
+      "href": "https://${MEDIAFUSION_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/mhdzumair/MediaFusion/main/resources/images/mediafusion_logo.png"
+    },
+    {
+      "name": "Stremio-Jackett",
+      "desc": "Stremio add-on for Jackett.",
+      "href": "https://${STREMIO_JACKETT_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/Jackett/Jackett/refs/heads/master/src/Jackett.Common/Content/jacket_medium.png"
+    },
+    {
+      "name": "Jackettio",
+      "desc": "Stremio add-on for Jackett.",
+      "href": "https://${JACKETTIO_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/Jackett/Jackett/refs/heads/master/src/Jackett.Common/Content/jacket_medium.png"
+    },
+    {
+      "name": "Easynews+",
+      "desc": "Stremio add-on for usenet content.",
+      "href": "https://${EASYNEWS_PLUS_HOSTNAME}",
+      "icon": "https://pbs.twimg.com/profile_images/479627852757733376/8v9zH7Yo_400x400.jpeg"
+    },
+    {
+      "name": "TMDB Addon",
+      "desc": "Stremio add-on for TMDB metadata.",
+      "href": "https://${TMDB_ADDON_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/mrcanelas/tmdb-addon/refs/heads/main/public/logo.png"
+    },
+    {
+      "name": "Stremio Catalog Providers",
+      "desc": "Stremio add-on for catalog providers.",
+      "href": "https://${STREMIO_CATALOG_PROVIDERS_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/redd-ravenn/stremio-catalog-providers/refs/heads/main/public/assets/logo.png"
+    },
+    {
+      "name": "Stremio Trakt Addon",
+      "desc": "Stremio add-on for Trakt.",
+      "href": "https://${STREMIO_TRAKT_ADDON_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/redd-ravenn/stremio-catalog-providers/refs/heads/main/public/assets/logoTrakt.png"
+    },
+    {
+      "name": "MediaFlow",
+      "desc": "Proxy server for media streams.",
+      "href": "https://${MEDIAFLOW_PROXY_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/mhdzumair/mediaflow-proxy/refs/heads/main/mediaflow_proxy/static/logo.png"
+    },
+    {
+      "name": "StremThru",
+      "desc": "Companion suite for Stremio.",
+      "href": "https://${STREMTHRU_HOSTNAME}",
+      "icon": "https://emojiapi.dev/api/v1/sparkles/256.png"
+    },
+    {
+      "name": "Stremio Addon Manager",
+      "desc": "Add-on manager for Stremio.",
+      "href": "https://${ADDON_MANAGER_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/Viren070/stremio-addon-manager/refs/heads/main/public/logo.png"
+    },
+    {
+      "name": "Cinebye",
+      "desc": "Add-on manager for Stremio with backup/restore and Cinemeta controls.",
+      "href": "https://${CINEBYE_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/0xConstant1/stremio-addon-manager/refs/heads/main/public/logo.png"
+    },
+    {
+      "name": "Stremio Account Bootstrapper",
+      "desc": "Stremio account bootstrapper.",
+      "href": "https://${STREMIO_ACCOUNT_BOOTSTRAPPER_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/DryKillLogic/stremio-account-bootstrapper/refs/heads/main/public/favicon.ico"
+    },
+    {
+      "name": "Stremio Server",
+      "desc": "Stremio streaming server.",
+      "href": "https://${STREMIO_SERVER_HOSTNAME}",
+      "icon": "https://www.stremio.com/website/stremio-purple-small.png"
+    },
+    {
+      "name": "Prowlarr",
+      "desc": "Indexer manager.",
+      "href": "https://${PROWLARR_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/Prowlarr/Prowlarr/refs/heads/develop/Logo/512.png"
+    },
+    {
+      "name": "Jackett",
+      "desc": "Torrent indexer.",
+      "href": "https://${JACKETT_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/Jackett/Jackett/refs/heads/master/src/Jackett.Common/Content/jacket_medium.png"
+    },
+    {
+      "name": "NZBHydra2",
+      "desc": "Usenet indexer.",
+      "href": "https://${NZBHYDRA2_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/theotherp/nzbhydra2/refs/heads/master/core/ui-src/img/logo.png"
+    },
+    {
+      "name": "SearXNG",
+      "desc": "Privacy-respecting search engine.",
+      "href": "https://${SEARXNG_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/searxng/searxng/refs/heads/master/searx/static/themes/simple/img/favicon.png"
+    },
+    {
+      "name": "Plausible",
+      "desc": "Privacy-friendly web analytics.",
+      "href": "https://${PLAUSIBLE_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/plausible/docs/master/static/img/plausible-analytics-icon-top.png"
+    },
+    {
       "name": "Portainer",
       "desc": "Manage Docker, Swarm, Kubernetes & ACI.",
-      "href": "https://portainer.yourdomain.com",
+      "href": "https://${PORTAINER_HOSTNAME}",
       "icon": "https://avatars.githubusercontent.com/u/22225832?s=280&v=4"
     },
-		{
-			"name": "Vaultwarden",
-			"desc": "Password Manager",
-			"href": "https://vaultwarden.yourdomain.com",
-			"icon": "https://raw.githubusercontent.com/dani-garcia/vaultwarden/6edceb5f7acfee8ffe1ae2f07afd76dc588dda60/resources/vaultwarden-icon.svg"
-		}
-
-	]
+    {
+      "name": "Vaultwarden",
+      "desc": "Password Manager",
+      "href": "https://${VAULTWARDEN_HOSTNAME}",
+      "icon": "https://raw.githubusercontent.com/dani-garcia/vaultwarden/6edceb5f7acfee8ffe1ae2f07afd76dc588dda60/resources/vaultwarden-icon.svg"
+    }
+  ]
 }

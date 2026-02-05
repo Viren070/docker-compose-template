@@ -1,11 +1,15 @@
 services:
   honey:
-    image: ghcr.io/dani3l0/honey:latest
+    build:
+      context: .
+      args:
+        PUID: ${PUID}
+        PGID: ${PGID}
+    image: honey:v2.4.1
     container_name: honey
     restart: unless-stopped
     user: $PUID:$PGID
     volumes:
-      - ./config.json:/app/dist/config/config.json
       - ${DOCKER_DATA_DIR}/honey:/app/dist/img/custom # place any images in this folder, and use custom/image_name.jpg in the config.json
     expose:
       - 4173
