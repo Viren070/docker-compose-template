@@ -1,0 +1,30 @@
+services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    init: true
+    container_name: seerr
+    restart: unless-stopped
+    expose:
+      - 5055
+    environment:
+      - TZ=${TZ:-UTC}
+      - LOG_LEVEL=debug
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.seerr.rule=Host(`${SEERR_HOSTNAME?}`)"
+      - "traefik.http.routers.seerr.entrypoints=websecure"
+      - "traefik.http.routers.seerr.tls.certresolver=letsencrypt"
+    volumes:
+      - ${DOCKER_DATA_DIR}/seerr:/app/config
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    depends_on:
+      decypharr:
+        condition: service_healthy
+    profiles:
+      - seerr
+      - all

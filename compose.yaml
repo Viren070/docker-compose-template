@@ -42,7 +42,6 @@ include:
   - apps/jackett/compose.yaml
   - apps/jackettio/compose.yaml
   - apps/jellyfin/compose.yaml
-  - apps/jellyseerr/compose.yaml
   - apps/karakeep/compose.yaml
   - apps/kometa/compose.yaml
   - apps/librespeed/compose.yaml
@@ -56,7 +55,6 @@ include:
   - apps/nzbdav/compose.yaml
   - apps/nzbhydra2/compose.yaml
   - apps/omg-tv-addon/compose.yaml
-  - apps/overseerr/compose.yaml
   - apps/plausible/compose.yaml
   - apps/plex/compose.yaml
   - apps/plex-trakt-sync/compose.yaml
@@ -71,6 +69,7 @@ include:
   - apps/rss-bridge/compose.yaml
   - apps/seanime/compose.yaml
   - apps/searxng/compose.yaml
+  - apps/seerr/compose.yaml
   - apps/sonarr/compose.yaml
   - apps/speedtest-tracker/compose.yaml
   - apps/sshbot/compose.yaml
