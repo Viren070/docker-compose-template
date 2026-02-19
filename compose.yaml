@@ -52,6 +52,7 @@ include:
   - apps/nitter/compose.yaml
   - apps/notifiarr/compose.yaml
   - apps/ntfy/compose.yaml
+  - apps/nuvio-streams/compose.yaml
   - apps/nzbdav/compose.yaml
   - apps/nzbhydra2/compose.yaml
   - apps/omg-tv-addon/compose.yaml
