@@ -7,9 +7,6 @@ services:
       - ${PORT:-1610}
     env_file:
       - .env
-    environment:
-      DATABASE_TYPE: ${DATABASE_TYPE:-postgresql}
-      DATABASE_URL: postgres://aiomanager:aiomanager@aiomanager_postgres:5432/aiomanager?sslmode=disable
     volumes:
       - ${DOCKER_DATA_DIR}/aiomanager/data:/app/data
     logging:
@@ -24,9 +21,9 @@ services:
       - traefik.http.routers.aiomanager.tls.certresolver=letsencrypt
       - traefik.http.routers.aiomanager.middlewares=authelia@docker
       - traefik.http.services.aiomanager.loadbalancer.server.port=${PORT:-1610}
-    depends_on:
-      aiomanager_postgres:
-        condition: service_healthy
+    #depends_on: # un-comment if using postgres
+    #  aiomanager_postgres:
+    #    condition: service_healthy
     healthcheck:
       test: ["CMD", "/nodejs/bin/node", "server/healthcheck.js"]
       interval: 1m
@@ -37,22 +34,22 @@ services:
       - aiomanager
       - all
 
-  aiomanager_postgres:
-    image: postgres:18-alpine
-    container_name: aiomanager_postgres
-    restart: unless-stopped
-    environment:
-      - POSTGRES_USER=aiomanager
-      - POSTGRES_PASSWORD=aiomanager
-      - POSTGRES_DB=aiomanager
-    volumes:
-      - ${DOCKER_DATA_DIR}/aiomanager/postgres:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U aiomanager -d aiomanager"]
-      start_period: 1m
-      interval: 20s
-      timeout: 5s
-      retries: 5
-    profiles:
-      - aiomanager
-      - all
+  #aiomanager_postgres: # un-comment if using postgres
+  #  image: postgres:18-alpine
+  #  container_name: aiomanager_postgres
+  #  restart: unless-stopped
+  #  environment:
+  #    - POSTGRES_USER=aiomanager
+  #    - POSTGRES_PASSWORD=aiomanager
+  #    - POSTGRES_DB=aiomanager
+  #  volumes:
+  #    - ${DOCKER_DATA_DIR}/aiomanager/postgres:/var/lib/postgresql/data
+  #  healthcheck:
+  #    test: ["CMD-SHELL", "pg_isready -U aiomanager -d aiomanager"]
+  #    start_period: 1m
+  #    interval: 20s
+  #    timeout: 5s
+  #    retries: 5
+  #  profiles:
+  #    - aiomanager
+  #    - all
