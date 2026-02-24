@@ -1,0 +1,26 @@
+services:
+  usenet-ultimate:
+    image: ghcr.io/dsmart33/usenet-ultimate:latest
+    container_name: usenet-ultimate
+    restart: unless-stopped
+    expose:
+      - 1337
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.usenet-ultimate.rule=Host(`${USENET_ULTIMATE_HOSTNAME?}`)"
+      - "traefik.http.routers.usenet-ultimate.entrypoints=websecure"
+      - "traefik.http.routers.usenet-ultimate.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.usenet-ultimate.middlewares=authelia@docker"
+      - "traefik.http.services.usenet-ultimate.loadbalancer.server.port=1337"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    volumes:
+      - ${DOCKER_DATA_DIR}/usenet-ultimate:/app/config:z
+    profiles:
+      - usenet-ultimate
+      - all
