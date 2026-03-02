@@ -1,6 +1,6 @@
 services:
   plexio:
-    image: ghcr.io/vanchaxy/plexio
+    image: plexio
     container_name: plexio
     restart: unless-stopped
     build:
