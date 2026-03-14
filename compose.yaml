@@ -98,6 +98,7 @@ include:
   - apps/tweakio/compose.yaml
   - apps/uptime-kuma/compose.yaml
   - apps/usenet-streamer/compose.yaml
+  - apps/usenet-ultimate/compose.yaml
   - apps/vaultwarden/compose.yaml
   - apps/wallos/compose.yaml
   - apps/warp/compose.yaml
