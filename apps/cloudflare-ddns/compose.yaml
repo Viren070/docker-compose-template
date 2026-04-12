@@ -108,6 +108,7 @@ services:
         ${WALLOS_HOSTNAME},
         ${WEBSTREAMR_HOSTNAME},
         ${WUD_HOSTNAME},
+        ${XRDB_HOSTNAME},
         ${YAMTRACK_HOSTNAME},
         ${ZILEAN_HOSTNAME},
         ${ZIPLINE_HOSTNAME},
