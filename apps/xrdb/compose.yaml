@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.xrdb.rule=Host(`${XRDB_HOSTNAME?}`)"
       - "traefik.http.routers.xrdb.entrypoints=${XRDB_TRAEFIK_ENTRYPOINTS:-websecure}"
       - "traefik.http.routers.xrdb.tls.certresolver=${XRDB_TRAEFIK_CERTRESOLVER:-letsencrypt}"
+      - "traefik.http.routers.xrdb.middlewares=authelia@docker"
       - "traefik.http.services.xrdb.loadbalancer.server.port=3000"
-      # - "traefik.http.routers.xrdb.middlewares=authelia@docker"
     volumes:
       - ${DOCKER_DATA_DIR}/xrdb:/app/data
     profiles:

@@ -790,6 +790,22 @@ access_control:
         - '^/openapi/.*$' 
       policy: 'bypass'
 
+    ## XRDB image and proxy endpoints bypass authentication for media clients
+    - domain: '{{ env "TEMPLATE_XRDB_HOSTNAME" }}'
+      resources:
+        - '^/poster(/.*)?$'
+        - '^/backdrop(/.*)?$'
+        - '^/logo(/.*)?$'
+        - '^/thumbnail(/.*)?$'
+        - '^/proxy(/.*)?$'
+        - '^/preview(/.*)?$'
+        - '^/api(/.*)?$'
+        - '^/_next(/.*)?$'
+        - '^/favicon\.ico$'
+        - '^/assets(/.*)?$'
+        - '^/fonts(/.*)?$'
+      policy: 'bypass'
+
     - domain: '*.{{ env "TEMPLATE_DOMAIN" }}'
       policy: 'two_factor'
 
