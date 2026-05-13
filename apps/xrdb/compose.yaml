@@ -6,13 +6,7 @@ services:
     env_file:
       - .env
     environment:
-      NODE_ENV: ${NODE_ENV:-production}
       PORT: 3000
-      HOSTNAME: 0.0.0.0
-      XRDB_PREVIEW_ORIGIN: ${XRDB_PREVIEW_ORIGIN:-}
-      PREVIEW_INTERNAL_ORIGIN: ${PREVIEW_INTERNAL_ORIGIN:-http://127.0.0.1:3000}
-      HTTP_PROXY: ${HTTP_PROXY:-}
-      HTTPS_PROXY: ${HTTPS_PROXY:-}
     expose:
       - 3000
     labels:
