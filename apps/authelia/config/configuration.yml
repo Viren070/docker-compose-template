@@ -813,6 +813,21 @@ access_control:
         - '^/fonts(/.*)?$'
       policy: 'bypass'
 
+    ## ERDB image and proxy endpoints bypass authentication for media clients
+    - domain: '{{ env "TEMPLATE_ERDB_HOSTNAME" }}'
+      resources:
+        - '^/(?:[^/]+/)?poster(/.*)?$'
+        - '^/(?:[^/]+/)?backdrop(/.*)?$'
+        - '^/(?:[^/]+/)?logo(/.*)?$'
+        - '^/(?:[^/]+/)?thumbnail(/.*)?$'
+        - '^/proxy(/.*)?$'        
+        - '^/api(/.*)?$'
+        - '^/_next(/.*)?$'
+        - '^/favicon\.ico$'
+        - '^/assets(/.*)?$'
+        - '^/fonts(/.*)?$'
+      policy: 'bypass'
+
     - domain: '*.{{ env "TEMPLATE_DOMAIN" }}'
       policy: 'two_factor'
 

@@ -54,6 +54,7 @@ services:
       TEMPLATE_NZBHYDRA2_HOSTNAME: ${NZBHYDRA2_HOSTNAME?}
       TEMPLATE_SEANIME_HOSTNAME: ${SEANIME_HOSTNAME?}
       TEMPLATE_XRDB_HOSTNAME: ${XRDB_HOSTNAME?}
+      TEMPLATE_ERDB_HOSTNAME: ${ERDB_HOSTNAME?}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.authelia.rule=Host(`${AUTHELIA_HOSTNAME?}`)"

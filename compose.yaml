@@ -32,6 +32,7 @@ include:
   - apps/easynews-indexer/compose.yaml
   - apps/easynews-plus/compose.yaml
   - apps/easynews-plus-plus/compose.yaml
+  - apps/erdb/compose.yaml
   - apps/fivefilters-full-text-rss/compose.yaml
   - apps/flaresolverr/compose.yaml
   - apps/freshrss/compose.yaml

@@ -1,0 +1,23 @@
+services:
+  erdb:
+    image: ghcr.io/realbestia1/erdb:latest
+    container_name: erdb
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      ERDB_WORKERS: ${ERDB_WORKERS:-auto}
+    expose:
+      - 3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.erdb.rule=Host(`${ERDB_HOSTNAME?}`)"
+      - "traefik.http.routers.erdb.entrypoints=websecure"
+      - "traefik.http.routers.erdb.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.erdb.middlewares=authelia@docker"
+      - "traefik.http.services.erdb.loadbalancer.server.port=3000"
+    volumes:
+      - ${DOCKER_DATA_DIR}/erdb:/app/data
+    profiles:
+      - erdb
+      - all
