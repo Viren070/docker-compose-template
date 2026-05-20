@@ -1,0 +1,18 @@
+services:
+  nzbdavex:
+    image: ghcr.io/qooode/nzbdavex:edge
+    container_name: nzbdavex
+    restart: unless-stopped
+    expose:
+     - 3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nzbdavex.rule=Host(`${NZBDAVEX_HOSTNAME?}`)"
+      - "traefik.http.routers.nzbdavex.entrypoints=websecure"
+      - "traefik.http.routers.nzbdavex.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.nzbdavex.middlewares=authelia@docker"
+    volumes:
+      - ${DOCKER_DATA_DIR}/nzbdavex:/config
+    profiles:
+      - all
+      - nzbdavex

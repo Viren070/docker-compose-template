@@ -744,6 +744,15 @@ access_control:
         - '^/view/content.*$'
         - '^/$'
 
+    - domain: '{{ env "TEMPLATE_NZBDAVEX_HOSTNAME" }}'
+      policy: 'bypass'
+      resources:
+         - '^/api.*$'
+         - '^/content.*$'
+         - '^/view/content.*$'
+         - '^/p/.*$'
+         - '^/$'
+
     ## Hydra instance
     - domain: '{{ env "TEMPLATE_NZBHYDRA2_HOSTNAME" }}'
       policy: 'bypass'

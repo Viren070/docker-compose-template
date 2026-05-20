@@ -58,6 +58,7 @@ include:
   - apps/notifiarr/compose.yaml
   - apps/ntfy/compose.yaml
   - apps/nzbdav/compose.yaml
+  - apps/nzbdavex/compose.yaml
   - apps/nzbhydra2/compose.yaml
   - apps/omg-tv-addon/compose.yaml
   - apps/plausible/compose.yaml

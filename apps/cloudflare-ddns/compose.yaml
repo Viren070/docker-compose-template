@@ -64,6 +64,7 @@ services:
         ${NOTIFIARR_HOSTNAME},
         ${NTFY_HOSTNAME},
         ${NZBDAV_HOSTNAME},
+        ${NZBDAVEX_HOSTNAME},
         ${NZBHYDRA2_HOSTNAME},
         ${OMG_TV_STREMIO_ADDON_HOSTNAME},
         ${PLAUSIBLE_HOSTNAME},
