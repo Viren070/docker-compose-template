@@ -753,6 +753,9 @@ access_control:
          - '^/p/.*$'
          - '^/$'
 
+    - domain: '{{ env "TEMPLATE_NZBDAVEX2_HOSTNAME" }}'
+      policy: 'two_factor'
+
     ## Hydra instance
     - domain: '{{ env "TEMPLATE_NZBHYDRA2_HOSTNAME" }}'
       policy: 'bypass'
