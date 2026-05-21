@@ -747,11 +747,11 @@ access_control:
     - domain: '{{ env "TEMPLATE_NZBDAVEX_HOSTNAME" }}'
       policy: 'bypass'
       resources:
-         - '^/api.*$'
-         - '^/content.*$'
-         - '^/view/content.*$'
-         - '^/p/.*$'
-         - '^/$'
+        - '^/api.*$'
+        - '^/content.*$'
+        - '^/view/content.*$'
+        - '^/p/.*$'
+        - '^/$'
 
     - domain: '{{ env "TEMPLATE_NZBDAVEX2_HOSTNAME" }}'
       policy: 'two_factor'
