@@ -750,7 +750,7 @@ access_control:
         - '^/api.*$'
         - '^/content.*$'
         - '^/view/content.*$'
-        - '^/p/.*$'
+        - '^/adapters.*$'
         - '^/$'
 
     - domain: '{{ env "TEMPLATE_NZBDAVEX2_HOSTNAME" }}'
