@@ -1,1 +1,50 @@
 ..*
+
+# ---------------------------------------------------------------------------
+# Ignore runtime state created by `docker compose up`. Files already tracked
+# in git (e.g. data/anime-kitsu/imdb_mapping.json, the shipped config.* files
+# under apps/*/) remain tracked — gitignore only affects untracked files.
+# ---------------------------------------------------------------------------
+
+# Default DOCKER_DATA_DIR (set in root .env to /opt/docker/data → inside repo).
+# Every app writes its runtime state somewhere under here.
+/data/
+
+# Apps that bind-mount a writable directory from the repo with `./config:/...`
+# or similar — containers create databases, sessions, logs, notifications, etc.
+# in these subtrees. Tracked config templates living alongside still show up
+# in `git status` normally.
+apps/adguard/config/
+apps/altmount/config/
+apps/authelia/config/db.sqlite3
+apps/authelia/config/notification.txt
+apps/authelia/config/*.log
+apps/crowdsec/config/data/
+apps/crowdsec/config/*.db
+apps/kometa/config/logs/
+apps/kometa/config/meta.db*
+apps/nitter/sessions/cookies/
+apps/stirling-pdf/configs/
+apps/stirling-pdf/files/
+
+# Generic runtime artifacts that containers may scatter anywhere they have
+# write access — SQLite databases, journals, logs, PID files.
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.log
+*.pid
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
