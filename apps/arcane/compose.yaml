@@ -22,6 +22,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DOCKER_DATA_DIR}/arcane:/app/data
+      - ${DOCKER_DIR}:${DOCKER_DIR}
+
     profiles:
       - arcane
       - all 
