@@ -23,6 +23,7 @@ include:
   - apps/comet/compose.yaml
   - apps/crowdsec/compose.yaml
   - apps/dash/compose.yaml
+  - apps/davex/compose.yaml
   - apps/decypharr/compose.yaml
   - apps/deunhealth/compose.yaml
   - apps/discord-tickets/compose.yaml
@@ -58,7 +59,6 @@ include:
   - apps/notifiarr/compose.yaml
   - apps/ntfy/compose.yaml
   - apps/nzbdav/compose.yaml
-  - apps/nzbdavex/compose.yaml
   - apps/nzbhydra2/compose.yaml
   - apps/omg-tv-addon/compose.yaml
   - apps/plausible/compose.yaml

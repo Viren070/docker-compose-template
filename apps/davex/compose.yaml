@@ -1,0 +1,18 @@
+services:
+  davex:
+    image: ghcr.io/qooode/nzbdavex:edge
+    container_name: davex
+    restart: unless-stopped
+    expose:
+      - 3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.davex.rule=Host(`${DAVEX_HOSTNAME?}`)"
+      - "traefik.http.routers.davex.entrypoints=websecure"
+      - "traefik.http.routers.davex.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.davex.middlewares=authelia@docker"
+    volumes:
+      - ${DOCKER_DATA_DIR}/davex:/config
+    profiles:
+      - all
+      - davex
