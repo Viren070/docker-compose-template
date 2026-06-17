@@ -749,7 +749,7 @@ access_control:
       resources:
         - '^/api.*$'
         - '^/content.*$'
-        - '^/view/content.*$'
+        - '^/view/.*$'
         - '^/adapters.*$'
         - '^/$'
 
