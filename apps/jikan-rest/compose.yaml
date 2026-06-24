@@ -82,7 +82,9 @@ services:
     secrets: [jikan_typesense_api_key]
     command: ["-c", "TYPESENSE_API_KEY=\"$$(cat /run/secrets/jikan_typesense_api_key)\" /opt/typesense-server --data-dir /data"]
     healthcheck:
-      test: ["CMD-SHELL", "wget --spider -q http://localhost:8108/health || exit 1"]
+      # The typesense 0.24.1 image ships no wget/curl/nc — only bash. Use bash's
+      # /dev/tcp to GET /health and confirm the server reports {"ok":true}.
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8108 && printf 'GET /health HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '\"ok\":true' <&3"]
       interval: 10s
       timeout: 5s
       retries: 5
