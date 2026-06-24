@@ -27,7 +27,7 @@ services:
     depends_on:
       jikan_mongo:     { condition: service_healthy }
       jikan_redis:     { condition: service_healthy }
-      jikan_typesense: { condition: service_started }
+      jikan_typesense: { condition: service_healthy }
 
   jikan_mongo:
     image: docker.io/mongo:focal
@@ -72,5 +72,11 @@ services:
     entrypoint: /bin/sh
     secrets: [jikan_typesense_api_key]
     command: ["-c", "TYPESENSE_API_KEY=\"$$(cat /run/secrets/jikan_typesense_api_key)\" /opt/typesense-server --data-dir /data"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:8108/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     volumes:
       - ${DOCKER_DATA_DIR}/jikan-rest/typesense:/data

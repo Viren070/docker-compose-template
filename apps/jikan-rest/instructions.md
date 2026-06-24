@@ -1,6 +1,7 @@
 # run this command in your terminal to generate the secrets for the database and redis
 
 ```bash
+mkdir -p secrets
 echo -n "jikan"        > secrets/db_username.txt
 echo -n "jikanadmin"   > secrets/db_admin_username.txt
 openssl rand -hex 24   > secrets/db_password.txt
@@ -34,4 +35,4 @@ I have bundeled the rr.yaml file in apps/jikan-rest/rr.yaml that you can use. it
 
 # All credits go to Cedya and Din the Goats that brought us AIOMetadata (ft Andrew).
 
-# Any issues please join the discord server: https://discord.gg/DdXgUY7e8z 
+# Any issues please join the discord server: https://discord.gg/DdXgUY7e8z
