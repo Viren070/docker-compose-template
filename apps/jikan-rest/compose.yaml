@@ -28,6 +28,9 @@ services:
       jikan_mongo:     { condition: service_healthy }
       jikan_redis:     { condition: service_healthy }
       jikan_typesense: { condition: service_healthy }
+    profiles:
+      - jikan-rest
+      - all
 
   jikan_mongo:
     image: docker.io/mongo:focal
@@ -48,6 +51,9 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    profiles:
+      - jikan-rest
+      - all
 
   jikan_redis:
     image: docker.io/redis:6-alpine
@@ -63,6 +69,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    profiles:
+      - jikan-rest
+      - all
 
   jikan_typesense:
     image: docker.io/typesense/typesense:0.24.1
@@ -80,3 +89,6 @@ services:
       start_period: 30s
     volumes:
       - ${DOCKER_DATA_DIR}/jikan-rest/typesense:/data
+    profiles:
+      - jikan-rest
+      - all
