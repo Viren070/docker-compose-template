@@ -23,6 +23,7 @@ include:
   - apps/comet/compose.yaml
   - apps/crowdsec/compose.yaml
   - apps/dash/compose.yaml
+  - apps/davex/compose.yaml
   - apps/decypharr/compose.yaml
   - apps/deunhealth/compose.yaml
   - apps/discord-tickets/compose.yaml

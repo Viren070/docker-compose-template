@@ -744,6 +744,18 @@ access_control:
         - '^/view/content.*$'
         - '^/$'
 
+    - domain: '{{ env "TEMPLATE_DAVEX_HOSTNAME" }}'
+      policy: 'bypass'
+      resources:
+        - '^/api.*$'
+        - '^/content.*$'
+        - '^/view/.*$'
+        - '^/adapters.*$'
+        - '^/$'
+
+    - domain: '{{ env "TEMPLATE_DAVEX_HOSTNAME" }}'
+      policy: 'two_factor'
+
     ## Hydra instance
     - domain: '{{ env "TEMPLATE_NZBHYDRA2_HOSTNAME" }}'
       policy: 'bypass'

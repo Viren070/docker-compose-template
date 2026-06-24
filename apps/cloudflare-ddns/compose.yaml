@@ -33,6 +33,7 @@ services:
         ${CINEBYE_HOSTNAME},
         ${COMET_HOSTNAME},
         ${DASHDOT_HOSTNAME},
+        ${DAVEX_HOSTNAME},
         ${DEBRIDAV_HOSTNAME},
         ${DECYPHARR_HOSTNAME},
         ${DISCORD_TICKETS_HOSTNAME},
