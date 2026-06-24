@@ -1,0 +1,76 @@
+secrets:
+  jikan_db_username:       { file: ./secrets/db_username.txt }
+  jikan_db_password:       { file: ./secrets/db_password.txt }
+  jikan_db_admin_username: { file: ./secrets/db_admin_username.txt }
+  jikan_db_admin_password: { file: ./secrets/db_admin_password.txt }
+  jikan_redis_password:    { file: ./secrets/redis_password.txt }
+  jikan_typesense_api_key: { file: ./secrets/typesense_api_key.txt }
+
+services:
+  jikan_rest:
+    image: docker.io/jikanme/jikan-rest:latest
+    container_name: jikan_rest
+    hostname: jikan-rest-api
+    user: "10001:10001"
+    restart: unless-stopped
+    env_file: [.env.compose]
+    secrets: [jikan_db_username, jikan_db_password, jikan_redis_password, jikan_typesense_api_key]
+    expose: [8080]
+    volumes:
+      - ./rr.yaml:/app/.rr.yaml:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q 'http://127.0.0.1:2114/health?plugin=http'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      jikan_mongo:     { condition: service_healthy }
+      jikan_redis:     { condition: service_healthy }
+      jikan_typesense: { condition: service_started }
+
+  jikan_mongo:
+    image: docker.io/mongo:focal
+    container_name: jikan_mongo
+    hostname: jikan_mongo
+    restart: unless-stopped
+    command: "--wiredTigerCacheSizeGB 0.5"
+    secrets: [jikan_db_username, jikan_db_password, jikan_db_admin_username, jikan_db_admin_password]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/jikan_db_admin_username
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/jikan_db_admin_password
+      MONGO_INITDB_DATABASE: jikan_admin
+    volumes:
+      - ${DOCKER_DATA_DIR}/jikan-rest/mongo:/data/db
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh mongodb://localhost:27017 --quiet --eval 'db.runCommand(\"ping\").ok'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  jikan_redis:
+    image: docker.io/redis:6-alpine
+    container_name: jikan_redis
+    hostname: jikan_redis
+    restart: unless-stopped
+    secrets: [jikan_redis_password]
+    command: ["/bin/sh", "-c", "redis-server --requirepass \"$$(cat /run/secrets/jikan_redis_password)\" --appendonly yes"]
+    volumes:
+      - ${DOCKER_DATA_DIR}/jikan-rest/redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$(cat /run/secrets/jikan_redis_password)\" ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  jikan_typesense:
+    image: docker.io/typesense/typesense:0.24.1
+    container_name: jikan_typesense
+    hostname: jikan_typesense
+    restart: unless-stopped
+    entrypoint: /bin/sh
+    secrets: [jikan_typesense_api_key]
+    command: ["-c", "TYPESENSE_API_KEY=\"$$(cat /run/secrets/jikan_typesense_api_key)\" /opt/typesense-server --data-dir /data"]
+    volumes:
+      - ${DOCKER_DATA_DIR}/jikan-rest/typesense:/data
