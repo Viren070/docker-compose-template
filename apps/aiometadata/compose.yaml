@@ -45,3 +45,35 @@ services:
     profiles:
       - aiometadata
       - all
+
+  # Optional poster reverse-proxy cache (AIOMetadata guide §3). Opt-in: add the
+  # `poster-cache` profile to COMPOSE_PROFILES and uncomment the POSTER_* vars in
+  # apps/aiometadata/.env. Behind Authelia — /purge and /stats require 2FA, image
+  # fetches bypass (rules in apps/authelia/config/configuration.yml).
+  poster-cache:
+    image: nginx:alpine
+    container_name: poster-cache
+    restart: unless-stopped
+    volumes:
+      - ./poster-cache-nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./poster-cache-stats.sh:/stats.sh:ro
+      - ./poster-cache-purge-handler.sh:/purge-handler.sh:ro
+      - ${DOCKER_DATA_DIR}/poster-cache:/var/cache/nginx
+    entrypoint: ["/bin/sh", "-c", "chown -R nginx:nginx /var/cache/nginx && nc -lk -p 9888 -e /purge-handler.sh & /stats.sh & exec nginx -g 'daemon off;'"]
+    expose:
+      - "8888"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.poster-cache.rule=Host(`${POSTER_CACHE_HOSTNAME?}`)"
+      - "traefik.http.routers.poster-cache.entrypoints=websecure"
+      - "traefik.http.routers.poster-cache.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.poster-cache.middlewares=authelia@docker"
+      - "traefik.http.services.poster-cache.loadbalancer.server.port=8888"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:8888/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - poster-cache
+      - all
