@@ -27,6 +27,12 @@ apps/nitter/sessions/cookies/
 apps/stirling-pdf/configs/
 apps/stirling-pdf/files/
 
+# Per-app secret files (e.g. apps/jikan-rest/secrets/*.txt) are generated
+# locally per each app's instructions and must never be committed. The
+# .gitkeep placeholders stay tracked so the directories exist on a fresh clone.
+apps/jikan-rest/secrets/*
+!apps/jikan-rest/secrets/.gitkeep
+
 # Generic runtime artifacts that containers may scatter anywhere they have
 # write access — SQLite databases, journals, logs, PID files.
 *.sqlite

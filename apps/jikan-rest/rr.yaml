@@ -1,0 +1,61 @@
+version: '2.7'
+rpc:
+    listen: 'tcp://127.0.0.1:6001'
+server:
+    command: 'php ./vendor/bin/rr-worker start --relay-dsn unix:///var/run/rr/rr-relay.sock'
+    relay: 'unix:///var/run/rr/rr-relay.sock'
+    relay_timeout: 60s
+logs:
+    mode: production
+    level: info
+    encoding: json
+    output: stdout
+    err_output: stdout
+http:
+    address: '0.0.0.0:8080'
+    access_logs: true
+    max_request_size: 256
+    middleware:
+        - static
+        - headers
+        - gzip
+    uploads:
+        dir: /tmp
+        forbid:
+            - .php
+            - .exe
+            - .bat
+            - .sh
+    headers:
+        response:
+            X-Powered-By: RoadRunner
+    static:
+        dir: ./public
+        forbid:
+            - .htaccess
+            - .php
+        response:
+            X-Powered-By: RoadRunner
+    pool:
+        num_workers: 2
+        max_jobs: 64
+        allocate_timeout: 10s
+        destroy_timeout: 10s
+        supervisor:
+            max_worker_memory: 128
+            exec_ttl: 3600s
+    http2:
+        h2c: false
+        max_concurrent_streams: 128
+status:
+    address: '127.0.0.1:2114'
+    unavailable_status_code: 503
+service:
+    laravel_queue_worker_1:
+        command: 'php /app/artisan queue:work --queue=high,default --max-time=3600 --max-jobs=1000 --memory=256'
+        process_num: 1
+        restart_sec: 5
+    supercronic:
+        command: 'supercronic /etc/supercronic/laravel'
+endure:
+    log_level: error
