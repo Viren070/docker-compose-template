@@ -1,0 +1,14 @@
+services:
+  kaptain-collection:
+    image: ghcr.io/rrattani/kaptain-collection:latest
+    container_name: kaptain-collection
+    restart: unless-stopped    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kaptain-collection.rule=Host(`${KAPTAIN_COLLECTION_HOSTNAME?}`)"
+      - "traefik.http.routers.kaptain-collection.entrypoints=websecure"
+      - "traefik.http.routers.kaptain-collection.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kaptain-collection.middlewares=authelia@docker"
+    profiles:
+      - kaptain-collection
+      - all

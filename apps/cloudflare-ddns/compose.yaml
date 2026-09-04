@@ -55,6 +55,7 @@ services:
         ${JACKETT_HOSTNAME},
         ${JACKETTIO_HOSTNAME},
         ${JELLYFIN_HOSTNAME},
+        ${KAPTAIN_COLLECTION_HOSTNAME},
         ${KARAKEEP_HOSTNAME},
         ${LIBRESPEED_HOSTNAME},
         ${MEALIE_HOSTNAME},
