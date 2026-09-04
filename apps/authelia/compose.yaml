@@ -56,6 +56,7 @@ services:
       TEMPLATE_SEANIME_HOSTNAME: ${SEANIME_HOSTNAME?}
       TEMPLATE_XRDB_HOSTNAME: ${XRDB_HOSTNAME?}
       TEMPLATE_ERDB_HOSTNAME: ${ERDB_HOSTNAME?}
+      TEMPLATE_POSTER_CACHE_HOSTNAME: ${POSTER_CACHE_HOSTNAME?}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.authelia.rule=Host(`${AUTHELIA_HOSTNAME?}`)"

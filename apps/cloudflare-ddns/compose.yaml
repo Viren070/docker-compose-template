@@ -71,6 +71,7 @@ services:
         ${PLEX_HOSTNAME},
         ${PLEXIO_HOSTNAME},
         ${PORTAINER_HOSTNAME},
+        ${POSTER_CACHE_HOSTNAME},
         ${PROWLARR_HOSTNAME},
         ${QUETRE_HOSTNAME},
         ${RADARR_HOSTNAME},
