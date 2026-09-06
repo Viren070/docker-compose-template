@@ -790,6 +790,12 @@ access_control:
         - '^/openapi/.*$' 
       policy: 'bypass'
 
+    ## STREAMNZB
+    - domain: '{{ env "TEMPLATE_STREAMNZB_HOSTNAME" }}'
+      resources:
+        - '^/[a-f0-9]{64}/.*$'
+        - '^/error/.*$'
+      policy: 'bypass'
     - domain: '*.{{ env "TEMPLATE_DOMAIN" }}'
       policy: 'two_factor'
 
