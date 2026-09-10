@@ -1,0 +1,29 @@
+services:
+  streamnzb:
+    image: ghcr.io/gaisberg/streamnzb:dev
+    container_name: streamnzb
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - 7000
+      - 119
+    volumes:
+      - ${DOCKER_DATA_DIR}/streamnzb:/app/data
+    networks:
+      - aio_network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.streamnzb.rule=Host(`${STREAMNZB_HOSTNAME?}`)
+      - traefik.http.routers.streamnzb.entrypoints=websecure
+      - traefik.http.routers.streamnzb.tls.certresolver=letsencrypt
+      - traefik.http.routers.streamnzb.middlewares=authelia@docker
+      # internal service port
+      - traefik.http.services.streamnzb.loadbalancer.server.port=7000
+    profiles:
+      - streamnzb
+      - all
+
+networks:
+  aio_network:
+    external: true

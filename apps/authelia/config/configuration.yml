@@ -802,51 +802,12 @@ access_control:
         - '^/openapi/.*$' 
       policy: 'bypass'
 
-    ## Seanime API endpoints bypass authentication for streams and mobile apps.
-    - domain: '{{ env "TEMPLATE_SEANIME_HOSTNAME" }}'
+    ## STREAMNZB
+    - domain: '{{ env "TEMPLATE_STREAMNZB_HOSTNAME" }}'
+      resources:
+        - '^/[a-f0-9]{64}/.*$'
+        - '^/error/.*$'
       policy: 'bypass'
-      resources:
-        - '^/api.*$'
-        - '^/events.*$'
-
-    ## Protect the XRDB admin API. Must come before the bypass below.
-    - domain: '{{ env "TEMPLATE_XRDB_HOSTNAME" }}'
-      resources:
-        - '^/api/admin(/.*)?$'
-      policy: 'two_factor'
-
-    ## XRDB artwork and addon endpoints bypass authentication for media clients
-    - domain: '{{ env "TEMPLATE_XRDB_HOSTNAME" }}'
-      resources:
-        - '^/poster/[^/]+$'
-        - '^/backdrop/[^/]+$'
-        - '^/thumbnail/[^/]+$'
-        - '^/logo/[^/]+$'
-        - '^/stremio/manifest\.json$'
-        - '^/stremio/meta/.*$'
-        - '^/stremio/c/[^/]+/manifest\.json$'
-        - '^/stremio/c/[^/]+/meta/.*$'
-        - '^/[^/]+/(imdb|tmdb)/[^/]+/[^/]+$'   # RPDB-compatible artwork routes
-        - '^/[^/]+/isValid$'                   # RPDB key check
-        - '^/healthz$'
-        - '^/readyz$'
-      policy: 'bypass'
-
-    ## ERDB image and proxy endpoints bypass authentication for media clients
-    - domain: '{{ env "TEMPLATE_ERDB_HOSTNAME" }}'
-      resources:
-        - '^/(?:[^/]+/)?poster(/.*)?$'
-        - '^/(?:[^/]+/)?backdrop(/.*)?$'
-        - '^/(?:[^/]+/)?logo(/.*)?$'
-        - '^/(?:[^/]+/)?thumbnail(/.*)?$'
-        - '^/proxy(/.*)?$'        
-        - '^/api(/.*)?$'
-        - '^/_next(/.*)?$'
-        - '^/favicon\.ico$'
-        - '^/assets(/.*)?$'
-        - '^/fonts(/.*)?$'
-      policy: 'bypass'
-
     - domain: '*.{{ env "TEMPLATE_DOMAIN" }}'
       policy: 'two_factor'
 

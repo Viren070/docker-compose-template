@@ -81,6 +81,7 @@ include:
   - apps/sshbot/compose.yaml
   - apps/stirling-pdf/compose.yaml
   - apps/streamystats/compose.yaml
+  - apps/streamnzb/compose.yaml
   - apps/stremio-account-bootstrapper/compose.yaml
   - apps/stremio-ai-companion/compose.yaml
   - apps/stremio-ai-search/compose.yaml
