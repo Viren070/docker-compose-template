@@ -1,0 +1,32 @@
+services:
+  tuliprox:
+    container_name: tuliprox
+    image: ghcr.io/euzu/tuliprox-alpine:latest
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      - TZ=${TZ?}
+    expose:
+      - 8901
+    volumes:
+      - ${DOCKER_DATA_DIR}/tuliprox/config:/app/config
+      - ${DOCKER_DATA_DIR}/tuliprox/data:/app/data
+      - ${DOCKER_DATA_DIR}/tuliprox/backup:/app/backup
+      - ${DOCKER_DATA_DIR}/tuliprox/downloads:/app/downloads
+      - ${DOCKER_DATA_DIR}/tuliprox/cache:/app/cache
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tuliprox.rule=Host(`${TULIPROX_HOSTNAME?}`)"
+      - "traefik.http.routers.tuliprox.entrypoints=websecure"
+      - "traefik.http.routers.tuliprox.tls.certresolver=letsencrypt"
+      - "traefik.http.services.tuliprox.loadbalancer.server.port=8901"
+    # You can uncomment this after initial setup.
+    # healthcheck:
+    #   test: ["CMD", "/app/tuliprox", "-p", "/app/config", "--healthcheck"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 10s
+    profiles:
+      - tuliprox
+      - all

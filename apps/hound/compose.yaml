@@ -1,0 +1,49 @@
+services:
+  hound:
+    image: houndmediaserver/hound:latest
+    container_name: hound
+    restart: unless-stopped
+    expose:
+      - 2323
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - HOUND_SECRET=${HOUND_SECRET}
+      - POSTGRES_DB=hound
+      - POSTGRES_USER=hound
+      - POSTGRES_PASSWORD=hound
+      - POSTGRES_HOST=hound_postgres
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hound.rule=Host(`${HOUND_HOSTNAME?}`)"
+      - "traefik.http.routers.hound.entrypoints=websecure"
+      - "traefik.http.routers.hound.tls.certresolver=letsencrypt"
+      - "traefik.http.services.hound.loadbalancer.server.port=2323"
+      - "traefik.http.routers.hound.middlewares=authelia@docker"
+    volumes:
+      - ${DOCKER_DATA_DIR}/hound/server:/app/Hound Data
+    depends_on:
+      hound_postgres:
+        condition: service_healthy
+    profiles:
+      - hound
+      - all
+
+  hound_postgres:
+    image: postgres:18
+    container_name: hound_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hound
+      POSTGRES_USER: hound
+      POSTGRES_PASSWORD: hound
+    volumes:
+      - ${DOCKER_DATA_DIR}/hound/postgres:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hound -d hound"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    profiles:
+      - hound
+      - all

@@ -23,7 +23,7 @@ services:
 
   # Use Gost as a proxy because its better.
   gost:
-    image: ginuerzh/gost
+    image: gogost/gost:latest
     container_name: gost
     restart: unless-stopped
     network_mode: service:gluetun

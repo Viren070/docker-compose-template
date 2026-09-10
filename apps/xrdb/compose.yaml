@@ -1,0 +1,21 @@
+services:
+  xrdb:
+    container_name: xrdb
+    image: ghcr.io/ibbylabs/xrdb:${XRDB_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - 8787
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.xrdb.rule=Host(`${XRDB_HOSTNAME?}`)"
+      - "traefik.http.routers.xrdb.entrypoints=websecure"
+      - "traefik.http.routers.xrdb.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.xrdb.middlewares=authelia@docker"
+      - "traefik.http.services.xrdb.loadbalancer.server.port=8787"
+    volumes:
+      - ${DOCKER_DATA_DIR}/xrdb:/data
+    profiles:
+      - xrdb
+      - all

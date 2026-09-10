@@ -23,18 +23,24 @@ include:
   - apps/comet/compose.yaml
   - apps/crowdsec/compose.yaml
   - apps/dash/compose.yaml
+  - apps/davex/compose.yaml
   - apps/decypharr/compose.yaml
+  - apps/deunhealth/compose.yaml
   - apps/discord-tickets/compose.yaml
+  - apps/dockhand/compose.yaml
   - apps/dockge/compose.yaml
   - apps/dozzle/compose.yaml
   - apps/easynews-indexer/compose.yaml
   - apps/easynews-plus/compose.yaml
   - apps/easynews-plus-plus/compose.yaml
+  - apps/erdb/compose.yaml
   - apps/fivefilters-full-text-rss/compose.yaml
+  - apps/flaresolverr/compose.yaml
   - apps/freshrss/compose.yaml
   - apps/gluetun/compose.yaml
   - apps/homarr/compose.yaml
   - apps/honey/compose.yaml
+  - apps/hound/compose.yaml
   - apps/huntarr/compose.yaml
   - apps/immich/compose.yaml
   - apps/iptvboss/compose.yaml
@@ -96,15 +102,18 @@ include:
   - apps/torbox-manager/compose.yaml
   - apps/torbox-media-center/compose.yaml
   - apps/traefik/compose.yaml
+  - apps/tuliprox/compose.yaml
   - apps/tweakio/compose.yaml
   - apps/uptime-kuma/compose.yaml
   - apps/usenet-streamer/compose.yaml
+  - apps/usenet-ultimate/compose.yaml
   - apps/vaultwarden/compose.yaml
   - apps/wallos/compose.yaml
   - apps/warp/compose.yaml
   - apps/watchtower/compose.yaml
   - apps/webstreamr/compose.yaml
   - apps/wud/compose.yaml
+  - apps/xrdb/compose.yaml
   - apps/yamtrack/compose.yaml
   - apps/zilean/compose.yaml
   - apps/zipline/compose.yaml

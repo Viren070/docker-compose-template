@@ -11,7 +11,7 @@ services:
       - APP_URL=https://${ARCANE_HOSTNAME}
       - ENCRYPTION_KEY=${ARCANE_ENCRYPTION_KEY}
       - JWT_SECRET=${ARCANE_JWT_SECRET}
-      - DATABASE_URL=file:/app/data/arcane.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate
+      - DATABASE_URL=file:data/arcane.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.arcane.rule=Host(`${ARCANE_HOSTNAME?}`)"
@@ -22,6 +22,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DOCKER_DATA_DIR}/arcane:/app/data
+      - ${DOCKER_DIR}:${DOCKER_DIR}
+
     profiles:
       - arcane
       - all 

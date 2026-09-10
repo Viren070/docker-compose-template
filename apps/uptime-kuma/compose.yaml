@@ -1,6 +1,6 @@
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2-slim
     container_name: kuma
     restart: unless-stopped
     # environment:

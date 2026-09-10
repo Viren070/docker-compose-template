@@ -1,0 +1,18 @@
+services:
+  deunhealth:
+    image: qmcgaw/deunhealth
+    container_name: deunhealth
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+      - HEALTH_SERVER_ADDRESS=127.0.0.1:9999
+      - TZ=${TZ:-UTC}
+    # To make deunhealth monitor a service, add the following labels to that service's configuration:
+    # e.g
+    # labels:
+    #   - "deunhealth.restart.on.unhealthy=true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    profiles:
+      - deunhealth
+      - all
