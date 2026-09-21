@@ -1,0 +1,33 @@
+services:
+  rclone:
+    image: rclone/rclone:latest
+    container_name: rclone
+    restart: unless-stopped
+    user: $PUID:$PGID
+    expose:
+      - 5572
+    volumes:
+      - ${DOCKER_DATA_DIR}/rclone/config:/config/rclone     # Persists your config file
+      - ${DOCKER_DATA_DIR}/rclone/data:/data                # Local data directory you want to sync
+    environment:
+      - PUID=${PUID} # Adjust to match your local user ID
+      - PGID=${PGID} # Adjust to match your local group ID
+      - TZ=${TZ}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rclone.rule=Host(`${RCLONE_HOSTNAME?}`)"
+      - "traefik.http.routers.rclone.entrypoints=websecure"
+      - "traefik.http.routers.rclone.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rclone.middlewares=authelia@docker"
+      - "traefik.http.services.rclone.loadbalancer.server.port=5572"
+    command: >
+      rcd 
+      --rc-web-gui 
+      --rc-web-gui-no-open-browser 
+      --rc-addr :5572 
+      --rc-no-auth
+      --cache-dir /config/rclone/cache
+    profiles:
+      - rclone
+      - all
+

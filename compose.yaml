@@ -69,6 +69,7 @@ include:
   - apps/prowlarr/compose.yaml
   - apps/quetre/compose.yaml
   - apps/radarr/compose.yaml
+  - apps/rclone/compose.yaml
   - apps/redlib/compose.yaml
   - apps/realdebrid-account-monitor/compose.yaml
   - apps/recyclarr/compose.yaml

@@ -76,6 +76,7 @@ services:
         ${RADARR_HOSTNAME},
         ${RADARR4K_HOSTNAME},
         ${RADARRANIME_HOSTNAME},
+        ${RCLONE_HOSTNAME},
         ${REDLIB_HOSTNAME},
         ${RSS_BRIDGE_HOSTNAME},
         ${SEANIME_HOSTNAME},
